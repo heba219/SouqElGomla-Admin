@@ -137,48 +137,12 @@
         }
     </style>
 
-    <!--containt style-->
-    <style>
-        #card1 {
-            border-radius: 10px;
-            margin: 10px;
-            background-image: url('../../pics/grad-1.png');
-            box-shadow: 2px 5px 20px #aaaaaa;
-            animation-duration: 2s;
-        }
-
-        #card2 {
-            border-radius: 10px;
-            margin: 10px;
-            background-image: url('../../pics/grad-2.png');
-            box-shadow: 2px 5px 20px #aaaaaa;
-            animation-duration: 2s;
-        }
-
-        #card3 {
-            border-radius: 10px;
-            margin: 10px;
-            background-image: url('../../pics/grad-3.png');
-            box-shadow: 2px 5px 20px #aaaaaa;
-            animation-duration: 2s;
-        }
-
-        #card4 {
-            border-radius: 10px;
-            margin: 10px;
-            background-image: url('../../pics/grad-4.png');
-            box-shadow: 2px 5px 20px #aaaaaa;
-            animation-duration: 2s;
-        }
-
-        .card > img {
-            width: 150px;
-            align-self: center;
-        }
-    </style>
 </head>
+<!------------------------------------------------------------------------------------------------->
 <body style=" background-color: #f7f7f7 ">
 
+
+    <!------------------------------------------------------------------------------------------------->
     <!--sideBar-->
     <main>
 
@@ -189,12 +153,12 @@
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
                 <li>
-                    <a href="#" class="nav-link text-white  active">
+                    <a href="#" class="nav-link text-white ">
                         Dashboard
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link text-white">
+                    <a href="#" class="nav-link text-white active">
                         Products
                     </a>
                 </li>
@@ -226,39 +190,126 @@
 
     </main>
 
-    <!--Containt-->
-    <div class="row" style="width: 80%; margin-left: 20%; margin-top: 50px; z-index: 1;">
-        <div class="card text-white  mb-3 col-5  w3-center w3-animate-left" id="card1">
-            <img src="~/pics/IconsAdmin-02.png" />
-            <div class="card-body">
-                <h3 class="card-title">Categories</h3>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <!------------------------------------------------------------------------------------------------->
+
+
+    <div class="row" style="width: 80%; margin-left: 20%; margin-top: 50px; margin-bottom: 50px; z-index: 1;">
+
+        <!------------------------------------------------------------------------------------------------->
+        <!--add PProduct-->
+
+        <div class="row mt-4">
+            <!-- main -->
+            <div class="col-12 col-md-8 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #CFD8E5 ">
+                <h4 class="mt-4">ADD-RETAILER</h4>
+                <form class="row g-3 mt-3">
+                    <div class="col-md-8">
+                        <label for="ProdName" class="form-label">Product name</label>
+                        <input type="text" class="form-control" id="ProdName">
+                    </div>
+                    <div class="dropdown  col-md-4">
+                        <div><label for="ProdName" class="form-label">Category</label></div>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
+                            <li><a class="dropdown-item" href="#">Category 1</a></li>
+                            <li><a class="dropdown-item" href="#">Category 2</a></li>
+                            <li><a class="dropdown-item" href="#">Category 3</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="price" min="0">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="quantity" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="quantity" min="0">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputProfilePicture" class="form-label">Picture</label>
+                        <input type="file" class="form-control" id="inputProfilePicture">
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Add Product</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="card text-white  mb-3 col-5  w3-center w3-animate-left" id="card2">
-            <img src="~/pics/IconsAdmin-03.png" />
-            <div class="card-body">
-                <h3 class="card-title">Products</h3>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+        <!------------------------------------------------------------------------------------------------->
+        <!--Remove Product-->
+        <div class="row mt-4">
+            <!-- main -->
+            <div class="col-12 col-md-8 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #E2CFCF ">
+                <h4 class="mt-4">REMOVE-SUPPLIER</h4>
+                <form class="row g-3 mt-3">
+                    <div class="col-md-6">
+                        <label for="inputCompanyName" class="form-label">Retailer ID</label>
+                        <input type="text" class="form-control" id="inputCompanyName">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputCompanyName" class="form-label">Confirm ID</label>
+                        <input type="text" class="form-control" id="inputCompanyName">
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Remove Retailer</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="card text-white  mb-3 col-5  w3-center w3-animate-right" id="card3">
-            <img src="~/pics/IconsAdmin-01.png" />
-            <div class="card-body">
-                <h3 class="card-title">Users</h3>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <!------------------------------------------------------------------------------------------------->
+       
+        <!--Get Products-->
+        <div class="row mt-4">
+            <div class="col-12 col-md-8 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #CFD8E5 ">
+                <h4 class="mt-4">Products</h4>
+                <hr />
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <th>Prod1</th>
+                            <td>Category1</td>
+                            <td>200</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <th>Prod2</th>
+                            <td>Category2</td>
+                            <td>200</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <th>Prod3</th>
+                            <td>Category3</td>
+                            <td>200</td>
+                            <td>30</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-        <div class="card text-white  mb-3 col-5  w3-center w3-animate-right" id="card4">
-            <img src="~/pics/IconsAdmin-04.png" />
-            <div class="card-body">
-                <h3 class="card-title">profile</h3>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
+
 
     </div>
 
+    <!------------------------------------------------------------------------------------------------->
+  
+    
     <!--Bootstrap js-->
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     <script>
@@ -272,5 +323,8 @@
         })()
 
     </script>
+
+    <!------------------------------------------------------------------------------------------------->
+
 </body>
 </html>
