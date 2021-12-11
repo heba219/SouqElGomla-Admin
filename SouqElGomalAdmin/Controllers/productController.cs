@@ -13,5 +13,16 @@ namespace SouqElGomalAdmin.Controllers
         {
             return View();
         }
+        public ActionResult Add_product()
+        {
+            return View();
+        }
+
+        public ActionResult Remove_product()
+        {
+            return View();
+        }
+
+
     }
 }

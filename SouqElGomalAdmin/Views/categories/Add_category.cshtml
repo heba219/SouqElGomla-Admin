@@ -1,0 +1,87 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Sidebars · Bootstrap v5.1</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+
+    <!-- CSS W3 Animation -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Custom styles for this template -->
+    <link href="sidebars.css" rel="stylesheet">
+
+    <style>
+        #formcontainer
+        {
+            margin: 0 auto;
+        }
+    </style>
+
+</head>
+<!------------------------------------------------------------------------------------------------->
+<body style=" background-color: #f7f7f7 ">
+
+    <div class="row">
+
+        <div class="col-2">
+            @Html.Partial("_SideBar");
+        </div>
+
+        <div class="col-10">
+
+            <!--add Category-->
+
+            <div class="row">
+                <!-- main -->
+                <div class="col-12 col-md-8 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #CFD8E5 ">
+                    <h4 class="mt-4">ADD-Category</h4>
+                    <hr />
+                    <form class="row g-3 mt-3">
+                        <div class="col-md-8">
+                            <label for="ProdName" class="form-label">Category name</label>
+                            <input type="text" class="form-control" id="ProdName">
+                        </div>
+                        <div class="col-md-12">
+                            <div><label for="Description" class="form-label">Category name</label></div>
+                            <textarea id="Description" name="Description" rows="4" cols="50" placeholder="Description Here">
+                            </textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">Add Category</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+        <!------------------------------------------------------------------------------------------------->
+        <!--Bootstrap js-->
+        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+        <script>
+            /* global bootstrap: false */
+            (function () {
+                'use strict'
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                    new bootstrap.Tooltip(tooltipTriggerEl)
+                })
+            })()
+
+        </script>
+
+        <!------------------------------------------------------------------------------------------------->
+
+</body>
+</html>
