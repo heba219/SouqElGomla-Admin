@@ -1,4 +1,7 @@
-﻿<!doctype html>
+﻿@using SouqElGomalAdmin.Models
+@model List<PindingType>
+
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -42,11 +45,10 @@
             border-radius: 10px;
             animation-duration: 2s;
             border: solid lightgray 2px;
-            background-color: transparent;
-            background-color: white;
+           
         }
 
-        .col-2 > img {
+        .col-3 > img {
             width: 70px;
             align-self: center;
         }
@@ -56,6 +58,25 @@
         #formcontainer {
             margin: 0 auto;
         }
+
+        @@media(min-width: 481px) and (max-width: 767px) {
+            .col-6.card {
+                width: 100%;
+            }
+
+            #myChart2{
+                width:90%;
+            }
+
+            .col-3.card {
+                width: 50%;
+            }
+            .table {
+                width: 100%;
+            }
+        }
+
+
     </style>
 </head>
 
@@ -63,8 +84,7 @@
 <!---------------------------------------------------------------------------------------------------->
 
 
-<body style=" background-color: #f7f7f7 ">
-
+<body style=" background-color: #DEDEDE " onload="BarFunction();">
 
     <div class="row">
 
@@ -76,81 +96,54 @@
 
 
             <!--Cards-->
-            <div class="row">
+            <div class="row" style="margin:7px 15px;">
 
-                <div class=" col-2  card">
+                <div class=" col-3  card" style=" background-image: url('../../pics/grad-1.png'); ">
                     <img src="~/pics/IconsAdmin-02.png" />
                     <div class="card-body">
-                        <h4 class="card-title">Categories</h4>
-                        <h3 class="card-title" style="color:#ed872f">7</h3>
-                        <div class="btn"> More -></div>
+                        <h4 class="card-title" style="color:#fff">Categories</h4>
+                        <h3 class="card-title" style="color:#fff">@ViewBag.TotalCategories</h3>
+                        <div class="btn" style="color:#fff"> More -></div>
                     </div>
                 </div>
-                <div class="col-2  card">
+                <div class="col-3  card" style=" background-image: url('../../pics/grad-2.png'); ">
                     <img src="~/pics/IconsAdmin-03.png" />
                     <div class="card-body">
-                        <h4 class="card-title">Products</h4>
-                        <h3 class="card-title" style="color:#ed872f">1250</h3>
-                        <div class="btn"> More -></div>
+                        <h4 class="card-title" style="color:#fff">Products</h4>
+                        <h3 class="card-title" style="color:#fff">@ViewBag.TotalProduct</h3>
+                        <div class="btn" style="color:#fff"> More -></div>
                     </div>
                 </div>
-                <div class="col-2 card">
+                <div class="col-3 card" style=" background-image: url('../../pics/grad-3.png'); ">
                     <img src="~/pics/IconsAdmin-01.png" />
                     <div class="card-body">
-                        <h4 class="card-title">Users</h4>
-                        <h3 class="card-title" style="color:#ed872f">3000</h3>
-                        <div class="btn"> More -></div>
+                        <h4 class="card-title" style="color:#fff">Users</h4>
+                        <h3 class="card-title" style="color:#fff">@ViewBag.TotalUsers</h3>
+                        <div class="btn" style="color:#fff"> More -></div>
                     </div>
                 </div>
-                <div class="col-2 card">
+                <div class="col-3 card" style=" background-image: url('../../pics/grad-4.png'); ">
                     <img src="~/pics/IconsAdmin-04.png" />
                     <div class="card-body">
-                        <h3 class="card-title">Admins</h3>
-                        <h3 class="card-title" style="color:#ed872f">7</h3>
-                        <div class="btn">More -></div>
+                        <h3 class="card-title" style="color:#fff">Admins</h3>
+                        <h3 class="card-title" style="color:#fff">@ViewBag.TotalUsers</h3>
+                        <div class="btn" style="color:#fff">More -></div>
                     </div>
                 </div>
 
             </div>
 
 
-            <!--Charts-->
-            <div class="row">
 
-                <div class="col-5 card">
-                    <div id="myChart"></div>
+            <!--Last Activities-->
+            <div class="row" style="margin:7px 15px;">
 
-                    <script>
-                        google.charts.load('current', { 'packages': ['corechart'] });
-                        google.charts.setOnLoadCallback(drawChart);
-
-                        function drawChart() {
-                            var data = google.visualization.arrayToDataTable([
-                                ['Caegories', 'Products per Category'],
-                                ['Cat_1', 10],
-                                ['Cat_2', 49],
-                                ['Cat_3', 44],
-                                ['Cat_4', 24],
-                                ['Cat_5', 15]
-                            ]);
-
-                            var options = {
-                                title: 'Products In Each Category'
-                            };
-
-                            var chart = new google.visualization.BarChart(document.getElementById('myChart'));
-                            chart.draw(data, options);
-                        }
-                    </script>
-
-                </div>
-
-                <div class="col-5 card">
+                <div class="col-6 card">
                     <canvas id="myChart2"></canvas>
 
                     <script>
                         var xValues = ["Products", "Categories", "Retailers", "Supliers"];
-                        var yValues = [55, 49, 44, 24];
+                        var yValues = [@ViewBag.TotalProduct, @ViewBag.TotalCategories, @ViewBag.TotalUsers, @ViewBag.TotalUsers];
                         var barColors = [
                             "#f98125",
                             "#5b84c4",
@@ -172,31 +165,52 @@
 
                 </div>
 
+                <div class="col-6 card">
+                    <h5>Admins</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>UserName</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+                                    <td>@i.ID</td>
+                                    <td>@i.Name</td>
+                                    <td>@i.UserName</td>
+                                    <th><a href="#"><div class="btn btn-danger">Regect</div></a></th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
 
+                </div>
             </div>
-
-            <!--Last Activities-->
-            <div class="row"></div>
         </div>
     </div>
-<!------------------------------------------------------------------------------------------------------>
-        
-    
-    
-    
-    
+    <script>
+        function BarFunction() {
+            document.getElementById('Dashboard').setAttribute("class", "nav-link text-white active");
+        }
+    </script>
+    <!------------------------------------------------------------------------------------------------------>
     <!--Bootstrap js-->
-        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-        <script>
-            /* global bootstrap: false */
-            (function () {
-                'use strict'
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-                tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-                    new bootstrap.Tooltip(tooltipTriggerEl)
-                })
-            })()
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script>
+        /* global bootstrap: false */
+        (function () {
+            'use strict'
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        })()
 
-        </script>
+    </script>
 </body>
 </html>

@@ -1,4 +1,7 @@
-﻿<!doctype html>
+﻿@using SouqElGomalAdmin.Models
+@model CategoryType
+
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -29,11 +32,12 @@
 
 </head>
 <!------------------------------------------------------------------------------------------------->
-<body style=" background-color: #f7f7f7 ">
+<body style=" background-color: #DEDEDE " onload="BarFunction();">
 
     <div class="row">
 
         <div class="col-2">
+
             @Html.Partial("_SideBar");
         </div>
 
@@ -43,45 +47,55 @@
 
             <div class="row">
                 <!-- main -->
-                <div class="col-12 col-md-8 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #CFD8E5 ">
+                <div class="col-12 col-md-10 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #fff ">
                     <h4 class="mt-4">ADD-Category</h4>
                     <hr />
-                    <form class="row g-3 mt-3">
-                        <div class="col-md-8">
-                            <label for="ProdName" class="form-label">Category name</label>
-                            <input type="text" class="form-control" id="ProdName">
-                        </div>
-                        <div class="col-md-12">
-                            <div><label for="Description" class="form-label">Category name</label></div>
-                            <textarea id="Description" name="Description" rows="4" cols="50" placeholder="Description Here">
-                            </textarea>
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Add Category</button>
-                        </div>
-                    </form>
+
+                    @using (Html.BeginForm("Add_category", "categories", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+
+                        @Html.LabelFor(i => i.Name);
+                        @Html.TextBoxFor(i => i.Name, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Name);
+
+                        @Html.LabelFor(i => i.Description);
+                        @Html.TextBoxFor(i => i.Description, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Description);
+
+                        <input type="file" name="Image1" />
+                        <br />
+                        <br />
+
+                        <input type="submit" value="Add Category" class="btn btn-primary" style="background-color:darkorange; margin:10px 0; border:1px solid darkorange"/>
+                    }
+
                 </div>
             </div>
 
         </div>
 
     </div>
-        <!------------------------------------------------------------------------------------------------->
-        <!--Bootstrap js-->
-        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-        <script>
-            /* global bootstrap: false */
-            (function () {
-                'use strict'
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-                tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-                    new bootstrap.Tooltip(tooltipTriggerEl)
-                })
-            })()
+    <script>
+        function BarFunction() {
+            document.getElementById('Add_Categories').setAttribute("class", "nav-link text-white active");
+        }
+    </script>
+    <!------------------------------------------------------------------------------------------------->
+    <!--Bootstrap js-->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script>
+        /* global bootstrap: false */
+        (function () {
+            'use strict'
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        })()
 
-        </script>
+    </script>
 
-        <!------------------------------------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------------------->
 
 </body>
 </html>

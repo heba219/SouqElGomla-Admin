@@ -106,9 +106,63 @@
         background-color: #ed872f;
     }
 
-    .collapse>ul>li>a{
-        padding-left:45px;
+    .list-unstyled.fw-normal.pb-1.small {
+        padding-left: 10px;
     }
+    .mb-1> hr {
+        width: 50%;
+    }
+    .nav.nav-pills.flex-column.mb-auto {
+        margin-top: 35px;
+    }
+
+    #logo {
+        width: 170px;
+        padding-left: 50px;
+    }
+
+    @@media(min-width: 768px) and (max-width: 1024px) {
+        #logo {
+            padding-left: 0;
+            width: 120px;
+            margin-left: 0;
+        }
+    }
+
+        @@media(min-width: 481px) and (max-width: 767px) {
+            .nav.nav-pills.flex-column.mb-auto > li > a > b {
+                font-size: 10px;
+            }
+
+            .mb-1 > a > b {
+                padding-left: 0;
+                font-size: 10px;
+            }
+
+            #logo {
+                padding-left: 0;
+                width: 70px;
+                margin-left: 0;
+            }
+
+            .nav-link.text-white {
+                font-size: 10px;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .d-flex.flex-column.flex-shrink-0.p-3.text-white.bg-dark.list-unstyled.mb-0 py-3 pt-md-1 {
+                padding-left: 0;
+            }
+
+            strong {
+                font-size: 10px;
+            }
+
+            .dropdown-menu.dropdown-menu-dark.text-small.shadow {
+                width: 70px;
+            }
+        }
 </style>
 
 
@@ -117,68 +171,62 @@
 
     <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark  list-unstyled mb-0 py-3 pt-md-1" style="width: 17%; height:758px; position:fixed; z-index:10;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <img src="~/pics/whiteLogo-04.png" style="width: 170px; padding-left:50px;" />
+            <img id="logo"src="~/pics/whiteLogo-04.png" />
         </a>
-        <hr>
         <ul class="nav nav-pills flex-column mb-auto">
-            <li>
-                <a href="/Home/index" class="nav-link text-white">
-                    Dashboard
+
+            <li class="mb-1">
+                <a href="/Home/index" class="nav-link text-white" id="Dashboard">
+                    <b>Dashboard</b>
                 </a>
             </li>
+
+            
             <li class="mb-1">
                 <a href="#" class="nav-link text-white d-inline-flex align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#Product-collapse" aria-expanded="false">
-                    Product
+                    <b>Product</b>
                 </a>
-                <div class="collapse" id="Product-collapse">
+                <hr />
+                <div class="collapse show" id="Product-collapse">
                     <ul class="list-unstyled fw-normal pb-1 small">
                         <li>
-                            <a href="/product/Index" class="nav-link text-white  ">Show Products</a>
+                            <a href="/product/Index" class="nav-link text-white " id="Show_Products">Show Products</a>
                         </li>
                         <li>
-                            <a href="/product/Add_product" class="nav-link text-white ">Add Product</a>
-                        </li>
-                        <li>
-                            <a href="/product/Remove_product" class="nav-link text-white ">Remove Product</a>
+                            <a href="/product/Add_product" class="nav-link text-white" id="Add_Products">Add Product</a>
                         </li>
                     </ul>
                 </div>
             </li>
 
+            
             <li class="mb-1">
                 <a href="#" class="nav-link text-white d-inline-flex align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#Category-collapse" aria-expanded="false">
-                    Categories
+                    <b>Categories</b>
                 </a>
-                <div class="collapse" id="Category-collapse">
+                <hr />
+                <div class="collapse show" id="Category-collapse">
                     <ul class="list-unstyled fw-normal pb-1 small">
                         <li>
-                            <a href="/categories/Index" class="nav-link text-white ">Show Categories</a>
+                            <a href="/categories/Index" class="nav-link text-white" id="Show_Categories">Show Categories</a>
                         </li>
                         <li>
-                            <a href="/categories/Add_category" class="nav-link text-white ">Add Category</a>
-                        </li>
-                        <li>
-                            <a href="/categories/Remove_category" class="nav-link text-white ">Remove Category</a>
+                            <a href="/categories/Add_category" class="nav-link text-white"  id="Add_Categories">Add Category</a>
                         </li>
                     </ul>
                 </div>
             </li>
 
-
+            
             <li class="mb-1">
                 <a href="#" class="nav-link text-white d-inline-flex align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#User-collapse" aria-expanded="false">
-                    Users
+                    <b>Users</b>
                 </a>
-                <div class="collapse" id="User-collapse">
+                <hr />
+                <div class="collapse show" id="User-collapse">
                     <ul class="list-unstyled fw-normal pb-1 small">
-                        <li>
-                            <a href="/users/Index" class="nav-link text-white ">Show Users</a>
-                        </li>
-                        <li>
-                            <a href="/users/Add_User" class="nav-link text-white ">Add User</a>
-                        </li>
-                        <li>
-                            <a href="/users/Remove_User" class="nav-link text-white ">Remove User</a>
+                        <li >
+                            <a href="/users/Index"  class="nav-link text-white" id="Show_Users">Show Users</a>
                         </li>
                     </ul>
                 </div>
@@ -189,11 +237,11 @@
 
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="~/pics/profile.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+  
                 <strong>Admin</strong>
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Setting</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Sign out</a></li>
             </ul>

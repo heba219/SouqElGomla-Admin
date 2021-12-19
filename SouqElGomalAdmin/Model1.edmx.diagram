@@ -4,27 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="833b569b6a0b481e8cdf3268f25aca34" Name="Diagram1">
-        <EntityTypeShape EntityType="APISouqElGomlaModel.C__EFMigrationsHistory" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="APISouqElGomlaModel.BuyProduct" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="APISouqElGomlaModel.Category" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="APISouqElGomlaModel.MakeOrder" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="APISouqElGomlaModel.Order" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="APISouqElGomlaModel.Payment" Width="1.5" PointX="1.5" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="APISouqElGomlaModel.Product" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="APISouqElGomlaModel.RetailerReviewProduct" Width="1.5" PointX="8.25" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="APISouqElGomlaModel.Shipper" Width="1.5" PointX="1.5" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="APISouqElGomlaModel.User" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <AssociationConnector Association="APISouqElGomlaModel.FK_BuyProduct_Product_ProductID" ManuallyRouted="false" />
-        <AssociationConnector Association="APISouqElGomlaModel.FK_BuyProduct_User_UserId" ManuallyRouted="false" />
+      <Diagram DiagramId="f922541fab0c4d218cadae936b7d7a26" Name="Diagram1">
+        <EntityTypeShape EntityType="APISouqElGomlaModel.Category" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="APISouqElGomlaModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="APISouqElGomlaModel.User" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
         <AssociationConnector Association="APISouqElGomlaModel.FK_Product_Category_CategoryID" ManuallyRouted="false" />
-        <AssociationConnector Association="APISouqElGomlaModel.FK_MakeOrder_Order_OrderID" ManuallyRouted="false" />
-        <AssociationConnector Association="APISouqElGomlaModel.FK_MakeOrder_User_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="APISouqElGomlaModel.FK_Order_Payment_PaymentID" ManuallyRouted="false" />
-        <AssociationConnector Association="APISouqElGomlaModel.FK_Order_Shipper_ShipperID" ManuallyRouted="false" />
         <AssociationConnector Association="APISouqElGomlaModel.FK_Product_User_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="APISouqElGomlaModel.FK_RetailerReviewProduct_Product_ProductID" ManuallyRouted="false" />
-        <AssociationConnector Association="APISouqElGomlaModel.FK_RetailerReviewProduct_User_UserId" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

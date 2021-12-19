@@ -13,10 +13,10 @@ namespace SouqElGomalAdmin
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class APISouqElGomlaEntities : DbContext
+    public partial class APISouqElGomlaEntities2 : DbContext
     {
-        public APISouqElGomlaEntities()
-            : base("name=APISouqElGomlaEntities")
+        public APISouqElGomlaEntities2()
+            : base("name=APISouqElGomlaEntities2")
         {
         }
     
@@ -25,15 +25,8 @@ namespace SouqElGomalAdmin
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__EFMigrationsHistory> C__EFMigrationsHistory { get; set; }
-        public virtual DbSet<BuyProduct> BuyProducts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<MakeOrder> MakeOrders { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<RetailerReviewProduct> RetailerReviewProducts { get; set; }
-        public virtual DbSet<Shipper> Shippers { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }

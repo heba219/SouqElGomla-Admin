@@ -1,0 +1,106 @@
+﻿@using SouqElGomalAdmin.ViewModels
+@model ProductModel
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Sidebars · Bootstrap v5.1</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+
+    <!-- CSS W3 Animation -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Custom styles for this template -->
+    <link href="sidebars.css" rel="stylesheet">
+
+    <style>
+        #formcontainer {
+            margin: 0 auto;
+        }
+    </style>
+
+</head>
+<!------------------------------------------------------------------------------------------------->
+<body style=" background-color: #DEDEDE ">
+
+    <div class="row">
+
+        <div class="col-2">
+            @Html.Partial("_SideBar");
+        </div>
+
+        <div class="col-10">
+
+            <!--add Category-->
+
+            <div class="row">
+                <!-- main -->
+                <div class="col-12 col-md-10 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #FFF ">
+                    <h4 class="mt-4">EDIT-Product</h4>
+                    <hr />
+
+                    @using (Html.BeginForm("Edit_Product", "product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.TextBoxFor(i => i.ID, new { @type = "hidden" });
+
+                        @Html.LabelFor(i => i.Name);
+                        @Html.TextBoxFor(i => i.Name, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Name);
+
+                        @Html.LabelFor(i => i.CategoryID);
+                        @Html.TextBoxFor(i => i.CategoryID, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.CategoryID);
+
+                        @Html.LabelFor(i => i.Price);
+                        @Html.TextBoxFor(i => i.Price, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Price);
+
+                        @Html.LabelFor(i => i.UnitWeight);
+                        @Html.TextBoxFor(i => i.UnitWeight, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.UnitWeight);
+
+                        @Html.LabelFor(i => i.Description);
+                        @Html.TextBoxFor(i => i.Description, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Description);
+
+                        <input type="file" name="Image2" />
+                        <br />
+                        <br />
+                        <input type="submit" value="Edit Product" class="btn btn-primary" style="background-color:darkorange; margin:10px 0; border:1px solid darkorange" />
+                    }
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <!--Bootstrap js-->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script>
+            /* global bootstrap: false */
+            (function () {
+                'use strict'
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                    new bootstrap.Tooltip(tooltipTriggerEl)
+                })
+            })()
+
+    </script>
+
+    <!------------------------------------------------------------------------------------------------->
+
+</body>
+</html>

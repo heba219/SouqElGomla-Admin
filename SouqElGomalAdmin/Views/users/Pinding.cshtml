@@ -1,0 +1,151 @@
+﻿@using SouqElGomalAdmin.Models
+@model UserType
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Sidebars · Bootstrap v5.1</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+
+    <!-- CSS W3 Animation -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Custom styles for this template -->
+    <link href="sidebars.css" rel="stylesheet">
+
+
+    <!--forms style-->
+    <style>
+        h4 {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .btn {
+            background-color: #ed872f;
+            border-radius: 3rem;
+            font-size: 1rem;
+            width: 150px;
+            height: 48px;
+            color: white;
+        }
+
+            .btn:hover {
+                background-color: #b54c26;
+            }
+
+        .container {
+            background-color: #efffed;
+        }
+
+        #formcontainer,
+        .card {
+            background-color: #d2e7cf;
+        }
+
+        i {
+            color: #ed872f;
+        }
+
+        .active {
+            color: #50b141;
+            text-decoration: none;
+        }
+
+            .active i {
+                color: #50b141;
+            }
+
+        .nav-link {
+            color: #ed872f;
+        }
+
+            .nav-link:hover {
+                color: #b54c26;
+            }
+
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /*# sourceMappingURL=style.css.map */
+    </style>
+
+</head>
+<!------------------------------------------------------------------------------------------------->
+<body style=" background-color: #f7f7f7 ">
+
+    <div class="row">
+
+        <div class="col-2">
+            @Html.Partial("_SideBar");
+        </div>
+
+        <div class="col-10">
+
+            <!--add suplier-->
+
+            @using (Html.BeginForm("Add_User", "users", "POST"))
+            {
+                @Html.LabelFor(i => i.ID);
+                @Html.TextBoxFor(i => i.ID, new { @class = "form-control" });
+                @Html.ValidationMessageFor(i => i.ID);
+
+                @Html.LabelFor(i => i.Name);
+                @Html.TextBoxFor(i => i.Name, new { @class = "form-control" });
+                @Html.ValidationMessageFor(i => i.Name);
+
+                @Html.LabelFor(i => i.Email);
+                @Html.TextBoxFor(i => i.Email, new { @class = "form-control" });
+                @Html.ValidationMessageFor(i => i.Name);
+
+                @Html.LabelFor(i => i.Address);
+                @Html.TextBoxFor(i => i.Address, new { @class = "form-control" });
+                @Html.ValidationMessageFor(i => i.Name);
+
+                @Html.LabelFor(i => i.UserName);
+                @Html.TextBoxFor(i => i.UserName, new { @class = "form-control" });
+                @Html.ValidationMessageFor(i => i.Name);
+
+                @Html.LabelFor(i => i.PhoneNumber);
+                @Html.TextBoxFor(i => i.PhoneNumber, new { @class = "form-control" });
+                @Html.ValidationMessageFor(i => i.Name);
+
+
+                <input type="submit" value="Add User" class="btn" />
+            }
+
+        </div>
+    </div>
+
+
+
+        <!------------------------------------------------------------------------------------------------->
+        <!--Bootstrap js-->
+        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+        <script>
+            /* global bootstrap: false */
+            (function () {
+                'use strict'
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                    new bootstrap.Tooltip(tooltipTriggerEl)
+                })
+            })()
+
+        </script>
+
+
+        <!------------------------------------------------------------------------------------------------->
+</body>
+</html>

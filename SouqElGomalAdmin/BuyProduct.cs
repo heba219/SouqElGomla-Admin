@@ -20,7 +20,7 @@ namespace SouqElGomalAdmin
         public Nullable<System.DateTime> Time { get; set; }
         public Nullable<int> Quantity { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Product Product { get; set; }
-        public virtual User User { get; set; }
     }
 }

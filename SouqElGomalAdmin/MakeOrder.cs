@@ -18,7 +18,7 @@ namespace SouqElGomalAdmin
         public string UserId { get; set; }
         public int OrderID { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual Order Order { get; set; }
-        public virtual User User { get; set; }
     }
 }

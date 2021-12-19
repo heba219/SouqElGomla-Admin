@@ -1,4 +1,6 @@
-﻿<!doctype html>
+﻿@using SouqElGomalAdmin.Models
+@model ProductType
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -20,83 +22,94 @@
     <!-- Bootstrap Custom styles for this template -->
     <link href="sidebars.css" rel="stylesheet">
 
- 
+    <style>
+        #formcontainer {
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <!------------------------------------------------------------------------------------------------->
-<body style=" background-color: #f7f7f7 ">
+<body style=" background-color: #DEDEDE " onload="BarFunction();">
 
 
     <!------------------------------------------------------------------------------------------------->
     <div class="row">
 
         <div class="col-2">
+
             @Html.Partial("_SideBar");
         </div>
 
         <div class="col-10">
 
-            <!--add PProduct-->
+            <!--add Category-->
 
-            <div class="row mt-4">
+            <div class="row">
                 <!-- main -->
-                <div class="col-12 col-md-8 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #CFD8E5 ">
-                    <h4 class="mt-4">ADD-RETAILER</h4>
-                    <form class="row g-3 mt-3">
-                        <div class="col-md-8">
-                            <label for="ProdName" class="form-label">Product name</label>
-                            <input type="text" class="form-control" id="ProdName">
-                        </div>
-                        <div class="dropdown  col-md-4">
-                            <div><label for="ProdName" class="form-label">Category</label></div>
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownMenuButton2">
-                                <li><a class="dropdown-item" href="#">Category 1</a></li>
-                                <li><a class="dropdown-item" href="#">Category 2</a></li>
-                                <li><a class="dropdown-item" href="#">Category 3</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="#">Separated link</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="price" class="form-label">Price</label>
-                            <input type="number" class="form-control" id="price" min="0">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="quantity" class="form-label">Quantity</label>
-                            <input type="number" class="form-control" id="quantity" min="0">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputProfilePicture" class="form-label">Picture</label>
-                            <input type="file" class="form-control" id="inputProfilePicture">
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Add Product</button>
-                        </div>
-                    </form>
+                <div class="col-12 col-md-10 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #FFF ">
+                    <h4 class="mt-4">ADD-Category</h4>
+                    <hr />
+
+                    @using (Html.BeginForm("Add_product", "product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+
+                        @Html.LabelFor(i => i.Name);
+                        @Html.TextBoxFor(i => i.Name, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Name);
+
+                        @Html.LabelFor(i => i.Description);
+                        @Html.TextBoxFor(i => i.Description, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Description);
+
+                        @Html.LabelFor(i => i.Price);
+                        @Html.TextBoxFor(i => i.Price, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Price);
+
+                        @*@Html.LabelFor(i => i.CategoryID);
+                            @Html.TextBoxFor(i => i.CategoryID, new { @class = "form-control" });
+                            @Html.ValidationMessageFor(i => i.CategoryID);*@
+
+                        @Html.LabelFor(i => i.CategoryID);
+                        @Html.DropDownListFor(i => i.CategoryID, ViewBag.cat as SelectList, "Category", new { @class = "form-control" });
+
+                        @Html.LabelFor(i => i.UnitWeight);
+                        @Html.TextBoxFor(i => i.UnitWeight, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.UnitWeight);
+
+                        <input type="file" name="Image1" />
+                        <br />
+                        <br />
+
+                        <input type="submit" value="Add Product" class="btn btn-primary" style="background-color:darkorange; margin:10px 0; border:1px solid darkorange" />
+                    }
+
                 </div>
             </div>
 
         </div>
     </div>
+    <script>
+        function BarFunction() {
+            document.getElementById('Add_Products').setAttribute("class", "nav-link text-white active");
+        }
+    </script>
 
-        <!------------------------------------------------------------------------------------------------->
-        <!--Bootstrap js-->
-        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-        <script>
-            /* global bootstrap: false */
-            (function () {
-                'use strict'
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-                tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-                    new bootstrap.Tooltip(tooltipTriggerEl)
-                })
-            })()
+    <!------------------------------------------------------------------------------------------------->
+    <!--Bootstrap js-->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script>
+        /* global bootstrap: false */
+        (function () {
+            'use strict'
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        })()
 
-        </script>
+    </script>
 
-        <!------------------------------------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------------------->
 
 </body>
 </html>

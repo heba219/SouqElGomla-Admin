@@ -1,0 +1,49 @@
+﻿@using SouqElGomalAdmin.ViewModels
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<UserModel>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ret</title>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    name
+                </th>
+                <th>
+                    img
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model)
+            {
+                var base64 = Convert.ToBase64String(i.Image);
+                var imgsrc = string.Format("data:image/gif; base64,{0}", base64);
+
+
+
+                <tr>
+                    <td>
+                        @i.Name;
+                    </td>
+                    <td>
+                        <img src="@imgsrc" style="max-width: 100px; max-height: 100px;" />
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+        <div id="Buttons">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page })) @*Buttons of pages*@
+        </div>
+    </table>
+</body>
+</html>

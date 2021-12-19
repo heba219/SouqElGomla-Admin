@@ -1,0 +1,105 @@
+﻿@using SouqElGomalAdmin.ViewModels
+@model UserModel
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Sidebars · Bootstrap v5.1</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+
+    <!-- CSS W3 Animation -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Custom styles for this template -->
+    <link href="sidebars.css" rel="stylesheet">
+
+    <style>
+        #formcontainer {
+            margin: 0 auto;
+        }
+    </style>
+
+</head>
+<!------------------------------------------------------------------------------------------------->
+<body style=" background-color: #DEDEDE ">
+
+    <div class="row">
+
+        <div class="col-2">
+            @Html.Partial("_SideBar");
+        </div>
+
+        <div class="col-10">
+
+            <!--add Category-->
+
+            <div class="row">
+                <!-- main -->
+                <div class="col-12 col-md-10 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #FFF ">
+                    <h4 class="mt-4">EDIT-User</h4>
+                    <hr />
+
+                    @using (Html.BeginForm("Edit_User", "users", "POST"))
+                    {
+                        <input type="hidden" value="@Model.ID" />
+
+                        @Html.LabelFor(i => i.Name);
+                        @Html.TextBoxFor(i => i.Name, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Name);
+
+                        @Html.LabelFor(i => i.Email);
+                        @Html.TextBoxFor(i => i.Email, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Email);
+
+                        @Html.LabelFor(i => i.Address);
+                        @Html.TextBoxFor(i => i.Address, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Address);
+
+                        @Html.LabelFor(i => i.UserName);
+                        @Html.TextBoxFor(i => i.UserName, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.UserName);
+
+                        @Html.LabelFor(i => i.PhoneNumber);
+                        @Html.TextBoxFor(i => i.PhoneNumber, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.PhoneNumber);
+
+                         <input type="file" name="Image2" />
+
+                        <input type="submit" value="Edit User" class="btn btn-primary" />
+                    }
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!------------------------------------------------------------------------------------------------->
+    <!--Bootstrap js-->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script>
+            /* global bootstrap: false */
+            (function () {
+                'use strict'
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                    new bootstrap.Tooltip(tooltipTriggerEl)
+                })
+            })()
+
+    </script>
+
+    <!------------------------------------------------------------------------------------------------->
+
+</body>
+</html>

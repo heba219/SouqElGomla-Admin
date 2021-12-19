@@ -17,10 +17,7 @@ namespace SouqElGomalAdmin
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.BuyProducts = new HashSet<BuyProduct>();
-            this.MakeOrders = new HashSet<MakeOrder>();
             this.Products = new HashSet<Product>();
-            this.RetailerReviewProducts = new HashSet<RetailerReviewProduct>();
         }
     
         public string Id { get; set; }
@@ -44,12 +41,6 @@ namespace SouqElGomalAdmin
         public Nullable<int> AccessFailedCount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BuyProduct> BuyProducts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MakeOrder> MakeOrders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RetailerReviewProduct> RetailerReviewProducts { get; set; }
     }
 }

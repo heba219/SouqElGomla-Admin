@@ -28,16 +28,17 @@ namespace SouqElGomalAdmin
         public int Quantity { get; set; }
         public Nullable<System.DateTime> ExpireDate { get; set; }
         public string UnitWeight { get; set; }
-        public string Image { get; set; }
+        public string ImageUrl { get; set; }
         public Nullable<System.DateTime> ProductionDate { get; set; }
         public string UserId { get; set; }
         public Nullable<int> CategoryID { get; set; }
         public Nullable<bool> IsApproved { get; set; }
+        public byte[] Image { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BuyProduct> BuyProducts { get; set; }
         public virtual Category Category { get; set; }
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RetailerReviewProduct> RetailerReviewProducts { get; set; }
     }

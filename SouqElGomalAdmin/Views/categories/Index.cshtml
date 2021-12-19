@@ -1,5 +1,7 @@
-﻿@using SouqElGomalAdmin.Models
-@model List<CategoryModel>
+﻿@using SouqElGomalAdmin.ViewModels
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<CategoryModel>
 
 <!doctype html>
 <html lang="en">
@@ -23,17 +25,100 @@
     <!-- Bootstrap Custom styles for this template -->
     <link href="sidebars.css" rel="stylesheet">
 
+    <!--forms style-->
+    <style>
+        h4 {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .btn {
+            background-color: #ed872f;
+            border: #ed872f;
+            color: white;
+        }
+
+            .btn:hover {
+                background-color: #b54c26;
+                border: #b54c26;
+                color: white;
+            }
+
+            .btn.delete {
+                background-color: #DC3645;
+                border: #DC3645;
+                color: white;
+            }
+
+                .btn.delete:hover {
+                    background-color: #BC2E3C;
+                    border: #BC2E3C;
+                    color: white;
+                }
+
+        .container {
+            background-color: #efffed;
+        }
+
+        #formcontainer,
+        .card {
+            background-color: #d2e7cf;
+        }
+
+        i {
+            color: #ed872f;
+        }
+
+        .active {
+            color: #50b141;
+            text-decoration: none;
+        }
+
+            .active i {
+                color: #50b141;
+            }
+
+        .nav-link {
+            color: #ed872f;
+        }
+
+            .nav-link:hover {
+                color: #b54c26;
+            }
+
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /*# sourceMappingURL=style.css.map */
+    </style>
+
     <style>
         #formcontainer {
             margin: 0 auto;
+        }
+
+
+        .pagination > .active > a:not([href]):not([class]), a:not([href]):not([class]):hover {
+            color: #fff;
+            background-color: #f98152;
+            margin: 3px;
+            padding: 7px 10px;
+            text-decoration: none;
+        }
+
+        .pagination > li > a {
+            color: #fff;
+            background-color: #fb9b50;
+            margin: 3px;
+            padding: 7px 10px;
+            text-decoration: none;
         }
     </style>
 
 </head>
 
 <!------------------------------------------------------------------------------------------------->
-<body style=" background-color: #f7f7f7 ">
-
+<body style=" background-color: #DEDEDE " onload="BarFunction();">
 
     <!------------------------------------------------------------------------------------------------->
     <div class="row">
@@ -45,8 +130,17 @@
         <div class="col-10">
             <!--Get Categories-->
             <div class="row mt-4">
-                <div class="col-12 col-md-8 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #CFD8E5 ">
+                <div class="col-12 col-md-10 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #fff">
                     <h4 class="mt-4">Categories</h4>
+                    <hr />
+
+                    @using (Html.BeginForm("Index", "categories", FormMethod.Get, new { @class = "form-control" }))
+                    {
+                        <b>Search By: </b> @Html.RadioButton("SearchBy", "ID") <text>ID</text>
+                        @Html.RadioButton("SearchBy", "Name", true) <text>Name</text> <br />
+                        <span><input type="text" placeholder="Search" name="Search" class="form-control" style="width:300px; float:left;" /></span>
+                        <span><input type="submit" value="Search" class="btn btn-primary" /></span>
+                    }
                     <hr />
                     <table class="table table-striped">
                         <thead>
@@ -54,28 +148,53 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Quantity Of Products</th>
+                                <th scope="col">Image</th>
+                                <th scope="col">Details</th>
+                                <th scope="col">Edit</th>
+                                <th scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
 
                             @foreach (var item in Model)
                             {
+
+                                var base64 = Convert.ToBase64String(item.Image);
+                                var imgsrc = string.Format("data:image/gif; base64,{0}", base64);
+
+
                                 <tr>
                                     <td>@item.ID</td>
                                     <td>@item.Name</td>
                                     <td>@item.QuantityOfProducts</td>
+                                    <td>
+                                        <img src="@imgsrc" style="max-width: 100px; max-height: 100px; border:solid 1px gray;" />
+                                    </td>
+                                    <th>@Html.ActionLink("Details", "CategoryDetails", new { id = item.ID }, new { @class = "btn btn-primary" })</th>
+                                    <th>@Html.ActionLink("Edit", "Edit_category", new { id = item.ID }, new { @class = "btn btn-primary" })</th>
+                                    <th>@Html.ActionLink("Delete", "Delete_category", new { id = item.ID }, new { @class = "btn btn-primary delete" })</th>
+
                                 </tr>
                             }
 
                         </tbody>
                     </table>
+                    <div id="Buttons">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page })) @*Buttons of pages*@
+                    </div>
+                    <a href="/categories/Add_category"> <div class="btn btn-primary" style="margin:15px;"> Create Category </div> </a>
                 </div>
-            </div>
 
+            </div>
         </div>
 
 
     </div>
+    <script>
+        function BarFunction() {
+            document.getElementById('Show_Categories').setAttribute("class", "nav-link text-white active");
+        }
+    </script>
     <!------------------------------------------------------------------------------------------------->
     <!--Bootstrap js-->
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>

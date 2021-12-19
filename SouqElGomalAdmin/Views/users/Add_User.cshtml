@@ -1,4 +1,6 @@
-﻿<!doctype html>
+﻿@using SouqElGomalAdmin.Models
+@model UserType
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -20,67 +22,18 @@
     <!-- Bootstrap Custom styles for this template -->
     <link href="sidebars.css" rel="stylesheet">
 
-
-    <!--forms style-->
     <style>
-        h4 {
-            text-align: center;
-            font-weight: bold;
+        #formcontainer {
+            margin: 0 auto;
         }
-
-        .btn {
-            background-color: #ed872f;
-            border-radius: 3rem;
-            font-size: 1rem;
-            width: 150px;
-            height: 48px;
-            color: white;
-        }
-
-            .btn:hover {
-                background-color: #b54c26;
-            }
-
-        .container {
-            background-color: #efffed;
-        }
-
-        #formcontainer,
-        .card {
-            background-color: #d2e7cf;
-        }
-
-        i {
-            color: #ed872f;
-        }
-
-        .active {
-            color: #50b141;
-            text-decoration: none;
-        }
-
-            .active i {
-                color: #50b141;
-            }
-
-        .nav-link {
-            color: #ed872f;
-        }
-
-            .nav-link:hover {
-                color: #b54c26;
-            }
-
-        * {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        /*# sourceMappingURL=style.css.map */
     </style>
 
 </head>
 <!------------------------------------------------------------------------------------------------->
-<body style=" background-color: #f7f7f7 ">
+<body style=" background-color: #DEDEDE ">
 
+
+    <!------------------------------------------------------------------------------------------------->
     <div class="row">
 
         <div class="col-2">
@@ -88,122 +41,62 @@
         </div>
 
         <div class="col-10">
-            <!--add retailer-->
 
-            <div class="row ">
-                <!-- main -->
-                <div class="col-12 col-md-8 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #CFD8E5 ">
-                    <h4 class="mt-4">ADD-RETAILER</h4>
-                    <form class="row g-3 mt-3">
-                        <div class="col-md-6">
-                            <label for="inputFName" class="form-label">First name</label>
-                            <input type="text" class="form-control" id="inputFName">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputLName" class="form-label">Last name</label>
-                            <input type="text" class="form-control" id="inputLName">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputTel" class="form-label">Phone</label>
-                            <input type="tel" class="form-control" id="inputTel">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputProfilePicture" class="form-label">Profile picture</label>
-                            <input type="file" class="form-control" id="inputProfilePicture">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputEmail4" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputUsername" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="inputUsername">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputPassword4" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="inputConfirmPassword">
-                        </div>
-                        <div class="col-md-8">
-                            <label for="inputAddress" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="inputAddress">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="inputCity" class="form-label">City</label>
-                            <input type="text" class="form-control" id="inputCity">
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Add Retailer</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-
-            <!--add suplier-->
+            <!--add Category-->
 
             <div class="row">
                 <!-- main -->
-                <div class="col-12 col-md-8 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #CFD8E5 ">
-                    <h4 class="mt-4">ADD-SUPPLIER</h4>
-                    <form class="row g-3 mt-3">
-                        <div class="col-md-6">
-                            <label for="inputCompanyName" class="form-label">Company name</label>
-                            <input type="text" class="form-control" id="inputCompanyName">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputTel" class="form-label">Phone</label>
-                            <input type="tel" class="form-control" id="inputTel">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputEmail4" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputUsername" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="inputUsername">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputPassword4" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputConfirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="inputConfirmPassword">
-                        </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Add supplier</button>
-                        </div>
-                    </form>
+                <div class="col-12 col-md-10 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #fff ">
+                    <h4 class="mt-4">ADD-User</h4>
+                    <hr />
+
+                    @using (Html.BeginForm("Add_User", "users", FormMethod.Post, new { enctype="multipart/form-data"}))
+                    {
+
+                        @Html.LabelFor(i => i.Name);
+                        @Html.TextBoxFor(i => i.Name, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Name);
+
+                        @Html.LabelFor(i => i.Address);
+                        @Html.TextBoxFor(i => i.Address, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Address);
+
+                        @Html.LabelFor(i => i.Email);
+                        @Html.TextBoxFor(i => i.Email, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Email);
+
+                        @Html.LabelFor(i => i.PhoneNumber);
+                        @Html.TextBoxFor(i => i.PhoneNumber, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.PhoneNumber);
+
+                        @*<input type="file" name="Image1" />*@
+
+
+                        <input type="submit" value="Add User" class="btn" />
+                    }
+
                 </div>
             </div>
 
         </div>
-
-
     </div>
 
+    <!------------------------------------------------------------------------------------------------->
+    <!--Bootstrap js-->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script>
+        /* global bootstrap: false */
+        (function () {
+            'use strict'
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        })()
 
+    </script>
 
-        <!------------------------------------------------------------------------------------------------->
-        <!--Bootstrap js-->
-        <script src="~/Scripts/bootstrap.bundle.min.js"></script>
-        <script>
-            /* global bootstrap: false */
-            (function () {
-                'use strict'
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-                tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-                    new bootstrap.Tooltip(tooltipTriggerEl)
-                })
-            })()
+    <!------------------------------------------------------------------------------------------------->
 
-        </script>
-
-
-        <!------------------------------------------------------------------------------------------------->
 </body>
 </html>

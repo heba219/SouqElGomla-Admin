@@ -1,0 +1,108 @@
+﻿@using SouqElGomalAdmin.ViewModels
+@model ProductModel
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Sidebars · Bootstrap v5.1</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+
+    <!-- CSS W3 Animation -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Custom styles for this template -->
+    <link href="sidebars.css" rel="stylesheet">
+
+    <style>
+        #img {
+            margin: 0 auto !important;
+        }
+
+            #img > img {
+                max-width: 400px;
+                max-height: 400px !important;
+                margin: 0 auto !important;
+            }
+    </style>
+
+</head>
+<body style=" background-color: #DEDEDE ">
+
+    @if (Model.Image != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Image);
+        var imgsrc = string.Format("data:image/gif; base64,{0}", base64);
+
+        
+
+    <div class="card" style=" width: 50%; margin: 0 auto; margin-top: 40px;">
+        <h1>Details Of Product</h1>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" id="img"><img src="@imgsrc" /></li>
+            <li class="list-group-item">@Model.ID</li>
+            <li class="list-group-item">@Model.Name</li>
+            <li class="list-group-item">@Model.Price</li>
+            <li class="list-group-item">@Model.Quantity</li>
+            <li class="list-group-item">@Model.Description</li>
+            <li class="list-group-item">@Model.CategoryID</li>
+            <li class="list-group-item">@Model.UnitWeight</li>
+        </ul>
+        <a href="~/product/Index">
+            <div class="card-footer btn btn-primary" style="width:100%; background-color:darkorange;">
+                Back
+            </div>
+        </a>
+    </div>
+    }
+    else
+    {
+
+
+        <div class="card" style=" width: 50%; margin: 0 auto; margin-top: 40px;">
+            <h1>Details Of Product</h1>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><div style="width: 400px; height: 400px; background-color: gray; margin: 0 auto;"></div></li>
+                <li class="list-group-item">@Model.ID</li>
+                <li class="list-group-item">@Model.Name</li>
+                <li class="list-group-item">@Model.Price</li>
+                <li class="list-group-item">@Model.Quantity</li>
+                <li class="list-group-item">@Model.Description</li>
+                <li class="list-group-item">@Model.CategoryID</li>
+                <li class="list-group-item">@Model.UnitWeight</li>
+            </ul>
+            <a href="~/product/Index">
+                <div class="card-footer btn btn-primary" style="width:100%; background-color:darkorange;">
+                    Back
+                </div>
+            </a>
+        </div>
+
+    }
+
+    <!------------------------------------------------------------------------------------------------->
+    <!--Bootstrap js-->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script>
+        /* global bootstrap: false */
+        (function () {
+            'use strict'
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        })()
+
+    </script>
+</body>
+</html>
+
