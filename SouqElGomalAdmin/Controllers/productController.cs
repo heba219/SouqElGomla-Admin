@@ -116,7 +116,7 @@ namespace SouqElGomalAdmin.Controllers
                         temp.CategoryID = NewProd.CategoryID;
                         if(unit == "0")
                         {
-                            temp.UnitWeight = NewProd.UnitWeight+"-g";
+                            temp.UnitWeight = NewProd.UnitWeight+"-gm";
                         }
                         else if (unit == "1")
                         {
@@ -144,7 +144,7 @@ namespace SouqElGomalAdmin.Controllers
                         temp.CategoryID = NewProd.CategoryID;
                         if (unit == "0")
                         {
-                            temp.UnitWeight = NewProd.UnitWeight + "-g";
+                            temp.UnitWeight = NewProd.UnitWeight + "-gm";
                         }
                         else if (unit == "1")
                         {
@@ -273,7 +273,7 @@ namespace SouqElGomalAdmin.Controllers
                         res3.Image = EditedProduct.Image;
                         if (unit == "0")
                         {
-                            res3.UnitWeight = EditedProduct.UnitWeight + "-g";
+                            res3.UnitWeight = EditedProduct.UnitWeight + "-gm";
                         }
                         else if (unit == "1")
                         {
@@ -303,7 +303,7 @@ namespace SouqElGomalAdmin.Controllers
                         res3.Price = EditedProduct.Price;
                         if (unit == "0")
                         {
-                            res3.UnitWeight = EditedProduct.UnitWeight + "-g";
+                            res3.UnitWeight = EditedProduct.UnitWeight + "-gm";
                         }
                         else if (unit == "1")
                         {

@@ -80,7 +80,7 @@
                         <div>@Html.LabelFor(i => i.UnitWeight)</div>
                         @Html.TextBoxFor(i => i.UnitWeight, new { @class = "form-control", type = "number", min = "0", style = "width:70%; float:left;" })
                         @Html.DropDownList("unit", new List<SelectListItem>{
-                        new SelectListItem{Text="g" ,Value="0" },
+                        new SelectListItem{Text="gm" ,Value="0" },
                         new SelectListItem{Text="kg" ,Value="1" },
                         new SelectListItem{Text="ml" ,Value="2" },
                         new SelectListItem{Text="L" ,Value="3" }
