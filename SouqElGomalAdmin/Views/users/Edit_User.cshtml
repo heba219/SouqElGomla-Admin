@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Sidebars · Bootstrap v5.1</title>
+    <title>SougEl-Gomla Admin</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
 
@@ -31,15 +31,15 @@
 
 </head>
 <!------------------------------------------------------------------------------------------------->
-<body style=" background-color: #DEDEDE ">
+<body style=" background-color: #DEDEDE " class="active">
 
     <div class="row">
 
-        <div class="col-2">
-            @Html.Partial("_SideBar");
+        <div >
+            @Html.Partial("_SideBar2");
         </div>
 
-        <div class="col-10">
+        <div class="col-12">
 
             <!--add Category-->
 
@@ -73,7 +73,6 @@
                         @Html.TextBoxFor(i => i.PhoneNumber, new { @class = "form-control" });
                         @Html.ValidationMessageFor(i => i.PhoneNumber);
 
-                         <input type="file" name="Image2" />
 
                         <input type="submit" value="Edit User" class="btn btn-primary" />
                     }

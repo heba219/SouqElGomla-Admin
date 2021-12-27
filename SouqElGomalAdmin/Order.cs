@@ -17,17 +17,20 @@ namespace SouqElGomalAdmin
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Order()
         {
-            this.MakeOrders = new HashSet<MakeOrder>();
+            this.ProductOrders = new HashSet<ProductOrder>();
         }
     
         public int ID { get; set; }
-        public Nullable<bool> IsComplete { get; set; }
-        public Nullable<int> ShipperID { get; set; }
-        public Nullable<int> PaymentID { get; set; }
+        public string UserId { get; set; }
+        public System.DateTime OrderDate { get; set; }
+        public int State { get; set; }
+        public string Address { get; set; }
+        public string Name { get; set; }
+        public int PaymentType { get; set; }
+        public string Phone { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MakeOrder> MakeOrders { get; set; }
-        public virtual Payment Payment { get; set; }
-        public virtual Shipper Shipper { get; set; }
+        public virtual ICollection<ProductOrder> ProductOrders { get; set; }
     }
 }

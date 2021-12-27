@@ -1,4 +1,26 @@
-﻿
+﻿@using SouqElGomalAdmin.Controllers
+
+@using SouqElGomalAdmin.Repository
+
+@using SouqElGomalAdmin.ViewModels
+@{
+
+    adminModel x = admin.GetAll().FirstOrDefault(i => i.email == adminController.currentAdmin);
+    if (x == null)                           // error here
+    {
+        try
+        {
+            x.name = "Profile";
+        }
+        catch (Exception ex)
+        {
+
+        }
+
+
+    }
+}
+
 <style>
 
     main {
@@ -106,63 +128,72 @@
         background-color: #ed872f;
     }
 
+
     .list-unstyled.fw-normal.pb-1.small {
         padding-left: 10px;
     }
-    .mb-1> hr {
+
+    .mb-1 > hr {
         width: 50%;
     }
+
     .nav.nav-pills.flex-column.mb-auto {
         margin-top: 35px;
     }
 
     #logo {
-        width: 170px;
-        padding-left: 50px;
+        width: 130px;
+        margin: 0 auto;
+        align-self: center;
+    }
+
+    .iconPic {
+        width: 30px !important;
+        padding: 5px 0;
+        display: none;
+        margin: 0 auto;
     }
 
     @@media(min-width: 768px) and (max-width: 1024px) {
         #logo {
-            padding-left: 0;
             width: 120px;
-            margin-left: 0;
         }
     }
 
-        @@media(min-width: 481px) and (max-width: 767px) {
-            .nav.nav-pills.flex-column.mb-auto > li > a > b {
-                font-size: 10px;
-            }
-
-            .mb-1 > a > b {
-                padding-left: 0;
-                font-size: 10px;
-            }
-
-            #logo {
-                padding-left: 0;
-                width: 70px;
-                margin-left: 0;
-            }
-
-            .nav-link.text-white {
-                font-size: 10px;
-                padding-left: 0;
-                padding-right: 0;
-            }
-
-            .d-flex.flex-column.flex-shrink-0.p-3.text-white.bg-dark.list-unstyled.mb-0 py-3 pt-md-1 {
-                padding-left: 0;
-            }
-
-            strong {
-                font-size: 10px;
-            }
-
-            .dropdown-menu.dropdown-menu-dark.text-small.shadow {
-                width: 70px;
-            }
+    @@media(min-width: 481px) and (max-width: 767px) {
+        .nav.nav-pills.flex-column.mb-auto > li > a > b {
+            font-size: 10px;
         }
+
+        .mb-1 > a > b {
+            padding-left: 0;
+            font-size: 10px;
+        }
+
+        #logo {
+            width: 80px;
+        }
+
+        .nav-link.text-white {
+            display: none;
+        }
+
+        .d-flex.flex-column.flex-shrink-0.p-3.text-white.bg-dark.list-unstyled.mb-0 py-3 pt-md-1 {
+            padding-left: 0;
+        }
+
+        strong {
+            display: none:
+        }
+
+        .dropdown-menu.dropdown-menu-dark.text-small.shadow {
+            width: 70px;
+        }
+
+        .iconPic {
+            display: block !important;
+        }
+    }
 </style>
 
 
@@ -171,79 +202,67 @@
 
     <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark  list-unstyled mb-0 py-3 pt-md-1" style="width: 17%; height:758px; position:fixed; z-index:10;">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <img id="logo"src="~/pics/whiteLogo-04.png" />
+            <img id="logo" src="~/pics/whiteLogo-04.png" />
         </a>
         <ul class="nav nav-pills flex-column mb-auto">
 
-            <li class="mb-1">
-                <a href="/Home/index" class="nav-link text-white" id="Dashboard">
-                    <b>Dashboard</b>
-                </a>
+            <li>
+                <a href="/Home/index" class="nav-link text-white " id="Dashboard">Dashboard</a>
             </li>
 
             
-            <li class="mb-1">
-                <a href="#" class="nav-link text-white d-inline-flex align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#Product-collapse" aria-expanded="false">
-                    <b>Product</b>
-                </a>
-                <hr />
-                <div class="collapse show" id="Product-collapse">
-                    <ul class="list-unstyled fw-normal pb-1 small">
-                        <li>
-                            <a href="/product/Index" class="nav-link text-white " id="Show_Products">Show Products</a>
-                        </li>
-                        <li>
-                            <a href="/product/Add_product" class="nav-link text-white" id="Add_Products">Add Product</a>
-                        </li>
-                    </ul>
-                </div>
+            <li>
+
+                <a href="/product/Index"><img src="~/pics/IconsAdmin-03.png" class="iconPic" /></a>              <a href="/product/Index" class="nav-link text-white " id="Show_Products">Show Products</a>
+            </li>
+            <li>
+                <a href="/product/Add_product"><img src="~/pics/IconsAdmin-07.png" class="iconPic" /></a>        <a href="/product/Add_product" class="nav-link text-white" id="Add_Products">Add Product</a>
+            </li>
+            <hr />
+            <li>
+                <a href="/categories/Index"><img src="~/pics/IconsAdmin-02.png" class="iconPic" /></a>           <a href="/categories/Index" class="nav-link text-white" id="Show_Categories">Show Categories</a>
+            </li>
+            <li>
+                <a href="/categories/Add_category"><img src="~/pics/IconsAdmin-09.png" class="iconPic" /></a>    <a href="/categories/Add_category" class="nav-link text-white" id="Add_Categories">Add Category</a>
             </li>
 
-            
-            <li class="mb-1">
-                <a href="#" class="nav-link text-white d-inline-flex align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#Category-collapse" aria-expanded="false">
-                    <b>Categories</b>
-                </a>
-                <hr />
-                <div class="collapse show" id="Category-collapse">
-                    <ul class="list-unstyled fw-normal pb-1 small">
-                        <li>
-                            <a href="/categories/Index" class="nav-link text-white" id="Show_Categories">Show Categories</a>
-                        </li>
-                        <li>
-                            <a href="/categories/Add_category" class="nav-link text-white"  id="Add_Categories">Add Category</a>
-                        </li>
-                    </ul>
-                </div>
+            <hr />
+
+            <li>
+                <a href="/users/Index"><img src="~/pics/IconsAdmin-01.png" class="iconPic" /></a>                <a href="/users/Index" class="nav-link text-white" id="Show_Users">Show Users</a>
             </li>
 
-            
-            <li class="mb-1">
-                <a href="#" class="nav-link text-white d-inline-flex align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#User-collapse" aria-expanded="false">
-                    <b>Users</b>
-                </a>
-                <hr />
-                <div class="collapse show" id="User-collapse">
-                    <ul class="list-unstyled fw-normal pb-1 small">
-                        <li >
-                            <a href="/users/Index"  class="nav-link text-white" id="Show_Users">Show Users</a>
-                        </li>
-                    </ul>
-                </div>
+            <hr />
+
+            <li>
+                <a href="/order/Index"><img src="~/pics/IconsAdmin-00.png" class="iconPic" /></a>                <a href="/order/Index" class="nav-link text-white" id="Show_Orders">Show Orders</a>
             </li>
+
+            <hr />
+
+            <li>
+                <a href="/admin/Index"><img src="~/pics/IconsAdmin-04.png" class="iconPic" /></a>               <a href="/admin/Index" class="nav-link text-white" id="Show_Admins">Show Admins</a>
+            </li>
+            <li>
+                <a href="/admin/addAdmin"><img src="~/pics/IconsAdmin-06.png" class="iconPic" /></a>           <a href="/admin/addAdmin" class="nav-link text-white" id="Add_Admins">Add Admins</a>
+            </li>
+
+
         </ul>
 
         <hr>
 
         <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-  
-                <strong>Admin</strong>
+
+
+                    <strong>@x.name</strong>
+
             </a>
             <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                <li><a class="dropdown-item" href="#">Setting</a></li>
+                <li><a class="dropdown-item" href="/admin/Edit_admin">Setting</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
+                <li><a class="dropdown-item" href="/admin/logout">Sign out</a></li>
             </ul>
         </div>
     </div>

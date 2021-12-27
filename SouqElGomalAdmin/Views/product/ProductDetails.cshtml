@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Sidebars · Bootstrap v5.1</title>
+    <title>SougEl-Gomla Admin</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
 
@@ -46,16 +46,17 @@
         
 
     <div class="card" style=" width: 50%; margin: 0 auto; margin-top: 40px;">
-        <h1>Details Of Product</h1>
+        <h3 style="padding:10px; margin:0auto;">Details Of Product</h3>
         <ul class="list-group list-group-flush">
             <li class="list-group-item" id="img"><img src="@imgsrc" /></li>
-            <li class="list-group-item">@Model.ID</li>
-            <li class="list-group-item">@Model.Name</li>
-            <li class="list-group-item">@Model.Price</li>
-            <li class="list-group-item">@Model.Quantity</li>
-            <li class="list-group-item">@Model.Description</li>
-            <li class="list-group-item">@Model.CategoryID</li>
-            <li class="list-group-item">@Model.UnitWeight</li>
+            <li class="list-group-item"><b>ID:</b> @Model.ID</li>
+            <li class="list-group-item"><b>Name:</b> @Model.Name</li>
+            <li class="list-group-item"><b>Price: </b>@Model.Price</li>
+            <li class="list-group-item"><b>Quantity: </b>@Model.Quantity</li>
+            <li class="list-group-item"><b>Category: </b>@ViewBag.CategoryName</li>
+            <li class="list-group-item"><b>Unitweight: </b>@Model.UnitWeight</li>
+            <li class="list-group-item"><b>Packges Number: </b>@Model.PackgesNumber</li>
+            <li class="list-group-item"><b>Description: </b>@Model.Description</li>
         </ul>
         <a href="~/product/Index">
             <div class="card-footer btn btn-primary" style="width:100%; background-color:darkorange;">
@@ -68,20 +69,22 @@
     {
 
 
-        <div class="card" style=" width: 50%; margin: 0 auto; margin-top: 40px;">
-            <h1>Details Of Product</h1>
+        <div class="card" style=" width: 50%; margin: 0 auto; margin-top: 40px; margin-bottom: 40px;">
+            <h3 style="padding:10px; margin:0auto;">Details Of Product</h3>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><div style="width: 400px; height: 400px; background-color: gray; margin: 0 auto;"></div></li>
-                <li class="list-group-item">@Model.ID</li>
-                <li class="list-group-item">@Model.Name</li>
-                <li class="list-group-item">@Model.Price</li>
-                <li class="list-group-item">@Model.Quantity</li>
-                <li class="list-group-item">@Model.Description</li>
-                <li class="list-group-item">@Model.CategoryID</li>
-                <li class="list-group-item">@Model.UnitWeight</li>
+                <li class="list-group-item" id="img"><img src="~/pics/NoImg.png" /></li>
+                <li class="list-group-item"><b>ID:</b> @Model.ID</li>
+                <li class="list-group-item"><b>Name:</b> @Model.Name</li>
+                <li class="list-group-item"><b>Price: </b>@Model.Price</li>
+                <li class="list-group-item"><b>Quantity: </b>@Model.Quantity</li>
+                <li class="list-group-item"><b>Category: </b>@ViewBag.CategoryName</li>
+                <li class="list-group-item"><b>Unitweight: </b>@Model.UnitWeight</li>
+                <li class="list-group-item"><b>Packges Number: </b>@Model.PackgesNumber</li>
+                <li class="list-group-item"><b>Description: </b>@Model.Description</li>
             </ul>
             <a href="~/product/Index">
-                <div class="card-footer btn btn-primary" style="width:100%; background-color:darkorange;">
+                <div class="card-footer btn btn-primary" style="width: 100%; background-color: darkorange; margin-bottom: 40px;">
                     Back
                 </div>
             </a>

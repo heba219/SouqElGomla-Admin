@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Sidebars · Bootstrap v5.1</title>
+    <title>SougEl-Gomla Admin</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
 
@@ -28,20 +28,23 @@
         {
             margin: 0 auto;
         }
+        .field-validation-error {
+            color: red;
+        }
     </style>
 
 </head>
 <!------------------------------------------------------------------------------------------------->
-<body style=" background-color: #DEDEDE " onload="BarFunction();">
+<body style=" background-color: #DEDEDE " onload="BarFunction();" class="active">
 
     <div class="row">
 
-        <div class="col-2">
+        <div >
 
-            @Html.Partial("_SideBar");
+            @Html.Partial("_SideBar2");
         </div>
 
-        <div class="col-10">
+        <div class="col-12">
 
             <!--add Category-->
 
@@ -57,16 +60,17 @@
                         @Html.LabelFor(i => i.Name);
                         @Html.TextBoxFor(i => i.Name, new { @class = "form-control" });
                         @Html.ValidationMessageFor(i => i.Name);
+                        <div style="color:red;">@ViewBag.existingName</div>
 
                         @Html.LabelFor(i => i.Description);
                         @Html.TextBoxFor(i => i.Description, new { @class = "form-control" });
                         @Html.ValidationMessageFor(i => i.Description);
-
-                        <input type="file" name="Image1" />
+                        <br />
+                        <input type="file" name="Image1" accept="image/*" />
                         <br />
                         <br />
 
-                        <input type="submit" value="Add Category" class="btn btn-primary" style="background-color:darkorange; margin:10px 0; border:1px solid darkorange"/>
+                        <input type="submit" value="Add Category" class="btn btn-primary" style="background-color:darkorange; margin:10px 0; border:1px solid darkorange" />
                     }
 
                 </div>

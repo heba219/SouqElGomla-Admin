@@ -1,0 +1,267 @@
+﻿@using SouqElGomalAdmin.ViewModels
+@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<OrderModel>
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>SougEl-Gomla Admin</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+
+    <!-- CSS W3 Animation -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap" />
+    <!-- Bootstrap Custom styles for this template -->
+    <link href="sidebars.css" rel="stylesheet">
+
+    <!--forms style-->
+    <style>
+        h4 {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .btn {
+            background-color: #ed872f;
+            border: #ed872f;
+            color: white;
+        }
+
+            .btn:hover {
+                background-color: #b54c26;
+                border: #b54c26;
+                color: white;
+            }
+
+            .btn.delete {
+                background-color: #DC3645;
+                border: #DC3645;
+                color: white;
+            }
+
+                .btn.delete:hover {
+                    background-color: #BC2E3C;
+                    border: #BC2E3C;
+                    color: white;
+                }
+
+        .container {
+            background-color: #efffed;
+        }
+
+        #formcontainer,
+        .card {
+            background-color: #d2e7cf;
+        }
+
+        i {
+            color: #ed872f;
+        }
+
+        .active {
+            color: #50b141;
+            text-decoration: none;
+        }
+
+            .active i {
+                color: #50b141;
+            }
+
+        .nav-link {
+            color: #ed872f;
+        }
+
+            .nav-link:hover {
+                color: #b54c26;
+            }
+
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /*# sourceMappingURL=style.css.map */
+    </style>
+
+    <style>
+        #formcontainer {
+            margin: 0 auto;
+        }
+
+
+        .pagination > .active > a:not([href]):not([class]), a:not([href]):not([class]):hover {
+            color: #fff;
+            background-color: #f98152;
+            margin: 3px;
+            padding: 7px 10px;
+            text-decoration: none;
+        }
+
+        .pagination > li > a {
+            color: #fff;
+            background-color: #fb9b50;
+            margin: 3px;
+            padding: 7px 10px;
+            text-decoration: none;
+        }
+        b{
+            font-weight:bold;
+        }
+    </style>
+
+    <style>
+
+
+        body {
+            background-color: #eee;
+            font-family: "Poppins", sans-serif;
+            font-weight: 300
+        }
+
+        .search {
+            position: relative;
+            box-shadow: 0 0 40px rgba(51, 51, 51, .1)
+        }
+
+            .search input {
+                height: 60px;
+                text-indent: 25px;
+                border: 2px solid #d6d4d4
+            }
+
+                .search input:focus {
+                    box-shadow: none;
+                    border: 2px solid blue
+                }
+
+            .search .fa-search {
+                position: absolute;
+                top: 20px;
+                left: 16px
+            }
+
+            .search button {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                height: 50px;
+                width: 110px;
+                background: blue
+            }
+
+        @@media(min-width: 481px) and (max-width: 767px) {
+            col-12.col-md-10.mt-2.mb-2.border.border-1.rounded {
+                width: 90%
+            }
+        }
+    </style>
+</head>
+<!------------------------------------------------------------------------------------------------->
+<body style=" background-color: #DEDEDE " onload="BarFunction();" class="active">
+
+
+    <div class="row">
+
+        <div >
+
+            @Html.Partial("_SideBar2");
+        </div>
+
+        <div class="col-12">
+            <!--Get Products-->
+            <div class="row mt-4">
+                <div class="col-12 col-md-10 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #fff">
+                    <h4 class="mt-4">Orders</h4>
+                    <hr />
+
+                    @using (Html.BeginForm("Index", "order", FormMethod.Get, new { @class = "form-control" }))
+                    {
+
+                        <span><input type="text" placeholder="Search By ID" name="Search" class="form-control" style="width:300px; float:left;" /></span>
+
+                        <span><input type="submit" value="Search" class="btn btn-primary" /></span>
+                    }
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Order ID</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model)
+                            {
+                                <tr>
+
+                                    <td>@i.ID</td>
+                                    <td>@i.OrderDate</td>
+
+                                    @if (i.State == 0)
+                                    {
+                                        <td><div style="width: 10px; height: 10px; border-radius: 50px; background-color: darkgoldenrod; Display:inline-block;"></div><b style="color:darkgoldenrod;"> Pending</b></td>
+                                    }
+                                    @if (i.State == 1)
+                                    {
+                                        <td><div style="width: 10px; height: 10px; border-radius: 50px; background-color: blue; Display:inline-block;"></div><b style="color:blue;"> On The Way</b></td>
+                                    }
+                                    @if (i.State == 2)
+                                    {
+                                        <td><div style="width: 10px; height: 10px; border-radius: 50px; background-color: green; Display:inline-block;"></div><b style="color:green;"> Delivard</b></td>
+                                    }
+
+                                    <th>@Html.ActionLink("Details", "Order_details", new { id = i.ID }, new { @class = "btn btn-primary" })</th>
+
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div id="Buttons">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script>
+        function BarFunction() {
+            document.getElementById('Show_Orders').setAttribute("class", "nav-link text-white active");
+            document.getElementById('Show_Orders_icon').setAttribute("class", "nav-link  active");
+        }
+    </script>
+
+    <!------------------------------------------------------------------------------------------------->
+    <!--Bootstrap js-->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script>
+        /* global bootstrap: false */
+        (function () {
+            'use strict'
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        })()
+
+    </script>
+
+    <!------------------------------------------------------------------------------------------------->
+
+</body>
+</html>
+

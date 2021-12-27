@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Sidebars · Bootstrap v5.1</title>
+    <title>SougEl-Gomla Admin</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
 
@@ -114,19 +114,24 @@
             padding: 7px 10px;
             text-decoration: none;
         }
+        .displayNone {
+            display: none;
+        }
+
+
 
     </style>
 </head>
 <!------------------------------------------------------------------------------------------------->
-<body style=" background-color: #DEDEDE " onload="BarFunction();">
+<body style=" background-color: #DEDEDE " onload="BarFunction();" class="active">
     <div class="row">
 
-        <div class="col-2">
-            @Html.Partial("_SideBar");
+        <div class="col-0">
+            @Html.Partial("_SideBar2");
 
         </div>
 
-        <div class="col-10">
+        <div class="col-12">
 
             <!--Get Users-->
             <div class="row">
@@ -136,65 +141,72 @@
 
                     <hr />
 
-                    @using (Html.BeginForm("Index","users",FormMethod.Get, new {@class="form-control"}))
+
+                    @if ((TempData["alert"]) == null)
                     {
-                        <b>Search By: </b> @Html.RadioButton("SearchBy", "ID") <text>ID</text>
-                                            @Html.RadioButton("SearchBy", "Name",true) <text>Name</text>  <br />
-                                             <span><input type="text" placeholder="Search" name="Search" class="form-control" style="width:300px; float:left;" /></span>
-                                             <span><input type="submit" value="Search" class="btn btn-primary"/></span>
+
                     }
-                    <hr />
+                    else
+                    {
+                        if (((int)TempData["alert"]) == 1)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                Can't Remove This User'
+                            </div>
+                        }
+                    }
+                        @using (Html.BeginForm("Index", "users", FormMethod.Get, new { @class = "form-control" }))
+                        {
+                            <span><input type="text" placeholder="Search By Name" name="Search" class="form-control" style="width:300px; float:left;" /></span>
+                            <span><input type="submit" value="Search" class="btn btn-primary" /></span>
+                        }
+                        <hr />
 
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Image</th>
-                                <th>Details</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var i in Model)
-                            {
-                                if (i.Image != null)
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Details</th>
+                                    <th class="displayNone">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var i in Model)
                                 {
-                                    var base64 = Convert.ToBase64String(i.Image);
-                                    var imgsrc = string.Format("data:image/gif; base64,{0}", base64);
+                                    if (i.Image != null)
+                                    {
+                                        var base64 = Convert.ToBase64String(i.Image);
+                                        var imgsrc = string.Format("data:image/gif; base64,{0}", base64);
 
 
-                                    <tr>
-                                        <td>@i.ID</td>
-                                        <td>@i.Name</td>
-                                        <td>
-                                            <img src="@imgsrc" style="max-width: 100px; max-height: 100px; border:solid 1px gray;" />
-                                        </td>
-                                        <th>@Html.ActionLink("Details", "UserDetails", new { id = i.ID }, new { @class = "btn btn-primary" })</th>
-                                        <th>@Html.ActionLink("Delete", "Delete_User", new { id = i.ID }, new { @class = "btn btn-primary  delete" })</th>
+                                        <tr>
+                                            <td>@i.ID</td>
+                                            <td>@i.Name</td>
+                                            <th>@Html.ActionLink("Details", "UserDetails", new { id = i.ID }, new { @class = "btn btn-primary" })</th>
+                                            <th class="displayNone">@Html.ActionLink("Delete", "Delete_User", new { id = i.ID }, new { @class = "btn btn-primary  delete" })</th>
 
-                                    </tr>
+                                        </tr>
+                                    }
+
+                                    else
+                                    {
+                                        <tr>
+                                            <td>@i.ID</td>
+                                            <td>@i.Name</td>
+                                            <th>@Html.ActionLink("Details", "UserDetails", new { id = i.ID }, new { @class = "btn btn-primary" })</th>
+                                            <th class="displayNone">@Html.ActionLink("Delete", "Delete_User", new { id = i.ID }, new { @class = "btn btn-primary  delete" })</th>
+
+                                        </tr>
+                                    }
                                 }
 
-                                else
-                                {
-                                    <tr>
-                                        <td>@i.ID</td>
-                                        <td>@i.Name</td>
-                                        <td><div style="width:100px; height:100px; background-color:gray;"></div></td>
-                                        <th>@Html.ActionLink("Details", "UserDetails", new { id = i.ID }, new { @class = "btn btn-primary" })</th>
-                                        <th>@Html.ActionLink("Delete", "Delete_User", new { id = i.ID }, new { @class = "btn btn-primary  delete" })</th>
-
-                                    </tr>
-                                }
-                            }
-
-                        </tbody>
-                    </table>
-                    <div id="Buttons">
-                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page })) @*Buttons of pages*@
+                            </tbody>
+                        </table>
+                        <div id="Buttons">
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page })) @*Buttons of pages*@
+                        </div>
                     </div>
-                </div>
             </div>
             
         </div>

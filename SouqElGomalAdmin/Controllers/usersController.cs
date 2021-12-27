@@ -16,25 +16,18 @@ namespace SouqElGomalAdmin.Controllers
     {
 
         // GET: users
-        public ActionResult Index(int? page, string SearchBy, string Search="")
+        public ActionResult Index(int? page, string SearchBy = "Name", string Search="")
         {
+            ////////////////////////////////
             if (Session["admin"] == null)
                 return Redirect("/admin/login");
+            ////////////////////////////////
+            ///
 
-            List<UserModel> res;
-            if(SearchBy == "ID")
-            {
-                if (Search == "")
-                {
-                    res = UserRepo.GetAll().ToList();
-                }
-                else
-                {
-                    res = UserRepo.GetAll().Where(i => i.ID.ToString() == Search || Search == null).ToList();
-                }
-                
-            }
-            else
+
+            List<UserModel> res = new List<UserModel>();
+
+            if (SearchBy == "Name")
             {
                 if(Search == "")
                 {
@@ -55,6 +48,12 @@ namespace SouqElGomalAdmin.Controllers
 
         public ActionResult ret(int? page)
         {
+            ////////////////////////////////
+            if (Session["admin"] == null)
+                return Redirect("/admin/login");
+            ////////////////////////////////
+            ///
+
             //List<UserModel> res = UserRepo.GetAll().ToList();
 
             return View();
@@ -63,6 +62,12 @@ namespace SouqElGomalAdmin.Controllers
         [HttpGet]
         public ActionResult Pinding()
         {
+            ////////////////////////////////
+            if (Session["admin"] == null)
+                return Redirect("/admin/login");
+            ////////////////////////////////
+            ///
+
             return View();
         }
 
@@ -100,8 +105,12 @@ namespace SouqElGomalAdmin.Controllers
         [HttpGet]
         public ActionResult UserDetails(string id)
         {
+            ////////////////////////////////
             if (Session["admin"] == null)
                 return Redirect("/admin/login");
+            ////////////////////////////////
+            ///
+
 
             UserModel res = UserRepo.GetAll().FirstOrDefault(i => i.ID == id);
             return View(res);
@@ -135,10 +144,22 @@ namespace SouqElGomalAdmin.Controllers
         [HttpGet]
         public ActionResult Delete_User(string id)
         {
+            ////////////////////////////////
             if (Session["admin"] == null)
                 return Redirect("/admin/login");
+            ////////////////////////////////
+            ///
 
-            UserRepo.Remove(id);
+            try
+            {
+                UserRepo.Remove(id);
+            }
+            catch(Exception ex)
+            {
+                TempData["alert"] = 1;
+                return Redirect("/users/Index");
+            }
+            
 
             return Redirect("/users/Index");
         }

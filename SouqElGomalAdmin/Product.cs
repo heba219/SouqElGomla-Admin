@@ -17,15 +17,15 @@ namespace SouqElGomalAdmin
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.BuyProducts = new HashSet<BuyProduct>();
+            this.ProductOrders = new HashSet<ProductOrder>();
             this.RetailerReviewProducts = new HashSet<RetailerReviewProduct>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public double Price { get; set; }
-        public int Quantity { get; set; }
+        public Nullable<double> Price { get; set; }
+        public Nullable<int> Quantity { get; set; }
         public Nullable<System.DateTime> ExpireDate { get; set; }
         public string UnitWeight { get; set; }
         public string ImageUrl { get; set; }
@@ -34,11 +34,12 @@ namespace SouqElGomalAdmin
         public Nullable<int> CategoryID { get; set; }
         public Nullable<bool> IsApproved { get; set; }
         public byte[] Image { get; set; }
+        public Nullable<int> PackgesNumber { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BuyProduct> BuyProducts { get; set; }
         public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductOrder> ProductOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RetailerReviewProduct> RetailerReviewProducts { get; set; }
     }

@@ -9,19 +9,46 @@ namespace SouqElGomalAdmin.Repository
     public class ProductRepo
     {
         static List<ProductModel> resList = new List<ProductModel>();
-        static API2SouqElGomlaEntities1 context = new API2SouqElGomlaEntities1();
+        static API2SouqElGomlaEntities4 context = new API2SouqElGomlaEntities4();
 
         public static List<ProductModel> GetAll()
         {
             resList.Clear();
             foreach (var i in context.Products)
             {
-                resList.Add(new ProductModel(i.ID, i.Name,i.Description, (float)i.Price, i.Quantity, i.UnitWeight
-                    , i.Image, i.UserId, (int)i.CategoryID));
+                ProductModel pro = new ProductModel();
+                pro.ID = i.ID;
+                pro.Name = i.Name;
+                pro.Price = (float)i.Price;
+
+                if(i.Quantity == null)
+                {
+                    pro.Quantity = 0;
+                }
+                else
+                {
+                    pro.Quantity = (int)i.Quantity;
+                }
+                    
+                pro.Image = i.Image;
+
+                if (i.CategoryID == null)
+                {
+                    pro.CategoryID = 0;
+                }
+                else
+                {
+                    pro.CategoryID = (int)i.CategoryID;
+                }
+                
+                pro.Description = i.Description;
+                pro.UnitWeight = i.UnitWeight;
+                pro.PackgesNumber = (int)i.PackgesNumber;
+
+                resList.Add(pro);
             }
 
             return resList;
-
         }
 
         public static void Add(Product newProduct)
@@ -39,6 +66,7 @@ namespace SouqElGomalAdmin.Repository
             x.Image = editedProduct.Image;
             x.ProductionDate = editedProduct.ProductionDate;
             x.UnitWeight = editedProduct.UnitWeight;
+            x.Quantity = editedProduct.Quantity;
 
             context.SaveChanges();
         }

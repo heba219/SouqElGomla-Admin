@@ -12,19 +12,14 @@ namespace SouqElGomalAdmin
     using System;
     using System.Collections.Generic;
     
-    public partial class Payment
+    public partial class ProductOrder
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Payment()
-        {
-            this.Orders = new HashSet<Order>();
-        }
-    
         public int ID { get; set; }
-        public string PaymentType { get; set; }
-        public string PaymentAllowed { get; set; }
+        public int OrderID { get; set; }
+        public int ProductID { get; set; }
+        public int Quantity { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual Order Order { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

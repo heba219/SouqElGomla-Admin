@@ -20,8 +20,7 @@ namespace SouqElGomalAdmin
             this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.AspNetUserTokens = new HashSet<AspNetUserToken>();
-            this.BuyProducts = new HashSet<BuyProduct>();
-            this.MakeOrders = new HashSet<MakeOrder>();
+            this.Orders = new HashSet<Order>();
             this.Products = new HashSet<Product>();
             this.RetailerReviewProducts = new HashSet<RetailerReviewProduct>();
             this.AspNetRoles = new HashSet<AspNetRole>();
@@ -54,9 +53,7 @@ namespace SouqElGomalAdmin
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserToken> AspNetUserTokens { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BuyProduct> BuyProducts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MakeOrder> MakeOrders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

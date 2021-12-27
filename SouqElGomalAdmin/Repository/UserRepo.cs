@@ -11,7 +11,7 @@ namespace SouqElGomalAdmin.Repository
     {
 
         static List<UserModel> resList = new List<UserModel>();
-        static API2SouqElGomlaEntities1 context = new API2SouqElGomlaEntities1();
+        static API2SouqElGomlaEntities4 context = new API2SouqElGomlaEntities4();
 
         public static List<UserModel> GetAll()
         {

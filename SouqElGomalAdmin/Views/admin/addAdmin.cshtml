@@ -1,64 +1,131 @@
-﻿
+﻿@using SouqElGomalAdmin.ViewModels
+@model adminLogin
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>SougEl-Gomla Admin</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
+
+    <!-- CSS W3 Animation -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- Bootstrap core CSS -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Custom styles for this template -->
+    <link href="sidebars.css" rel="stylesheet">
+    <style>
+        #formcontainer {
+            margin: 0 auto;
+        }
+        .field-validation-error {
+            color: red;
+        }
+    </style>
 </head>
-<body>
+<body style=" background-color: #DEDEDE " onload="BarFunction();" class="active">
 
+    <div class="row">
+        <div >
+            @Html.Partial("_SideBar2");
+        </div>
+        <div class="col-12">
+            <div class="row">
+                <!-- main -->
+                <div class="col-12 col-md-10 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #fff ">
+                    <h4 class="mt-4">ADD-Admin</h4>
+
+                    @using (Html.BeginForm("addAdmin", "admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+
+                        @Html.LabelFor(i => i.name);
+                        @Html.TextBoxFor(i => i.name, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.name);
+                        <br />
+
+
+                        @Html.LabelFor(i => i.password);
+                        @Html.PasswordFor(i => i.password, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.password);
+                        <br />
+
+                        @Html.LabelFor(i => i.ConfirmPassword);
+                        @Html.PasswordFor(i => i.ConfirmPassword, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.ConfirmPassword);
+
+                        <div style="color:red;">@ViewBag.psaaMatch</div>
+                        <br />
+
+                        @Html.LabelFor(i => i.email);
+                        @Html.TextBoxFor(i => i.email, new { @class = "form-control", type = "email" });
+                        @Html.ValidationMessageFor(i => i.email);
+
+                        <div style="color:red;">@ViewBag.existingEmail</div>
+                        <br />
+
+
+                        @Html.LabelFor(i => i.mobile);
+                        @Html.TextBoxFor(i => i.mobile, new { @class = "form-control", type = "number", min = "0", maxlength = "11" });
+                        @Html.ValidationMessageFor(i => i.mobile);
+                        <br />
+
+
+                        @Html.LabelFor(i => i.Address);
+                        @Html.TextBoxFor(i => i.Address, new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.Address);
+                        <br />
+
+                        @*<input type="file" name="Image1" accept="image/*" />*@
+                        <br />
+                        <br />
+
+                        <input type="submit" value="Add Admin" class="btn btn-primary" style="background-color:darkorange; margin:10px 0; border:1px solid darkorange" />
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        function BarFunction() {
+            document.getElementById('Add_Admins').setAttribute("class", "nav-link text-white active");
+        }
+    </script>
+
+    <script>
+        function checkpass(event) {
+            if (document.getElementById("password").value != document.getElementById("conpass").value) {
+                document.getElementById("res").innerText = "Not Identical Password"
+                event.preventDefault();
+            }
+
+        }
+    </script>
+    <!--Bootstrap js-->
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script>
+        /* global bootstrap: false */
+        (function () {
+            'use strict'
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        })()
+
+    </script>
 </body>
-<div class="container">
-    <div class="col-lg-2">
-
-    </div>
-    <div class="col-lg-8">
-
-        <form method="post" onsubmit="checkpass(event)">
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-
-                <input type="text" name="name" class="form-control" id="name" />
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-            </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" id="password" />
-            </div>
-            <label for="conpass" class="form-label"> Confirm Password</label>
-            <input type="password" name="conpass" class="form-control" id="password" />
-            <div id="res" style="color:red;">
-
-            </div>
-            <div class="mb-3" " >
-                <label class="form-label" for="email">Email</label>
-                <input type="email" name="email" class="form-control" id="email" />
-
-            </div>
-            <div class="mb-3">
-                <label for="phone" class="form-label">Phone Number</label>
-                <input type="number" name="phone" class="form-control" id="phone" />
-            </div>
-            <div class="mb-3">
-                <label for="Address" class="form-label">Address</label>
-                <input type="text" name="Address" class="form-control" id="Address" />
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-    <div class="col-lg-2">
-
-    </div>
-</div>
 
 </html>
-<script>
-    function checkpass(event) {
-        if (document.getElementById("password").value != document.getElementById("conpass").value)
-            {
-            document.getElementById("res").innerText ="Not Identical Password"
-            event.preventDefault();
-        }
-
-    }
-</script>
 
 

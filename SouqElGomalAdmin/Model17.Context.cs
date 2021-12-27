@@ -13,10 +13,10 @@ namespace SouqElGomalAdmin
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class API2SouqElGomlaEntities1 : DbContext
+    public partial class API2SouqElGomlaEntities4 : DbContext
     {
-        public API2SouqElGomlaEntities1()
-            : base("name=API2SouqElGomlaEntities1")
+        public API2SouqElGomlaEntities4()
+            : base("name=API2SouqElGomlaEntities4")
         {
         }
     
@@ -33,13 +33,10 @@ namespace SouqElGomalAdmin
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; }
-        public virtual DbSet<BuyProduct> BuyProducts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<MakeOrder> MakeOrders { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductOrder> ProductOrders { get; set; }
         public virtual DbSet<RetailerReviewProduct> RetailerReviewProducts { get; set; }
-        public virtual DbSet<Shipper> Shippers { get; set; }
     }
 }

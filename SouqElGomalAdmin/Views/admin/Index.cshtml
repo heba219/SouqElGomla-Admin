@@ -1,7 +1,7 @@
 ﻿@using SouqElGomalAdmin.ViewModels
 @using PagedList.Mvc;
 @using PagedList;
-@model IPagedList<CategoryModel>
+@model IPagedList<adminModel>
 
 
 <!doctype html>
@@ -22,7 +22,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-
+    <link href="://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap" />
     <!-- Bootstrap Custom styles for this template -->
     <link href="sidebars.css" rel="stylesheet">
 
@@ -114,58 +114,78 @@
             padding: 7px 10px;
             text-decoration: none;
         }
-
-        .img {
-            max-width: 100px;
-            max-height: 100px;
-            border:solid 1px gray;
-        }
-
-
-        @@media(min-width: 381px) and (max-width: 767px) {
-            .displayNone {
-                display: none;
-            }
-
-            .img {
-                width: 50px;
-            }
-
-        }
-
     </style>
 
-</head>
+    <style>
 
+
+        body {
+            background-color: #eee;
+            font-family: "Poppins", sans-serif;
+            font-weight: 300
+        }
+
+        .search {
+            position: relative;
+            box-shadow: 0 0 40px rgba(51, 51, 51, .1)
+        }
+
+            .search input {
+                height: 60px;
+                text-indent: 25px;
+                border: 2px solid #d6d4d4
+            }
+
+                .search input:focus {
+                    box-shadow: none;
+                    border: 2px solid blue
+                }
+
+            .search .fa-search {
+                position: absolute;
+                top: 20px;
+                left: 16px
+            }
+
+            .search button {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                height: 50px;
+                width: 110px;
+                background: blue
+            }
+
+        @@media(min-width: 481px) and (max-width: 767px) {
+            col-12.col-md-10.mt-2.mb-2.border.border-1.rounded {
+                width: 90%
+            }
+            .display{
+                display:none;
+            }
+        }
+    </style>
+</head>
 <!------------------------------------------------------------------------------------------------->
 <body style=" background-color: #DEDEDE " onload="BarFunction();" class="active">
 
-    <!------------------------------------------------------------------------------------------------->
+
     <div class="row">
 
         <div >
+
             @Html.Partial("_SideBar2");
         </div>
 
         <div class="col-12">
-            <!--Get Categories-->
+            <!--Get Products-->
             <div class="row mt-4">
                 <div class="col-12 col-md-10 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #fff">
-                    <h4 class="mt-4">Categories</h4>
+                    <h4 class="mt-4">Admins</h4>
 
-                    <div><a href="/categories/Add_category"> <div class="btn" style="margin:15px; float:right;"> + Create Category </div> </a></div>
+                    <div><a href="/admin/addAdmin"> <div class="btn" style="margin:15px; float:right;"> + Add Admin </div> </a></div>
                     <br />
                     <br />
-
-
-
-                    @using (Html.BeginForm("Index", "categories", FormMethod.Get, new { @class = "form-control" }))
-                    {
-                        <span><input type="text" placeholder="Search" name="Search" class="form-control" style="width:300px; float:left;" /></span>
-                        <span><input type="submit" value="Search" class="btn btn-primary" /></span>
-                    }
-                    <hr />
-
                     @if ((TempData["alert"]) == null)
                     {
 
@@ -174,90 +194,62 @@
                     {
                         if (((int)TempData["alert"]) == 1)
                         {
-                            <div class="alert alert-danger" role="alert">
-                                This Category is have a product!
+                            <div class="alert alert-success" role="alert">
+                                This admin successfully Added!
+                            </div>
+                        }
+                        else if (((int)TempData["alert"]) == 3)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                This Admin is Removed successfully!
                             </div>
                         }
                         else if (((int)TempData["alert"]) == 2)
                         {
                             <div class="alert alert-success" role="alert">
-                                This Category is Removed successfully!
+                                This Admin successfully Edited
                             </div>
                         }
 
-                        else if (((int)TempData["alert"]) == 3)
-                        {
-                            <div class="alert alert-success" role="alert">
-                                This Category is successfully added
-                            </div>
-                        }
-
-                        else if (((int)TempData["alert"]) == 4)
-                        {
-                            <div class="alert alert-success" role="alert">
-                                This Category is successfully Edited
-                            </div>
-                        }
                         else if (((int)TempData["alert"]) == 5)
-                        {
+                         {
                             <div class="alert alert-danger" role="alert">
                                 someting wrong occured!
                             </div>
                         }
+                    }<br>
+                    <br />
+
+                    @using (Html.BeginForm("Index", "admin", FormMethod.Get, new { @class = "form-control" }))
+                    {
+
+                        <span><input type="text" placeholder="Search By Email" name="Search" class="form-control" style="width:300px; float:left;" /></span>
+
+                        <span><input type="submit" value="Search" class="btn btn-primary" /></span>
                     }
-
-
 
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col" class="displayNone">ID</th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Name</th>
-                                <th scope="col" class="displayNone">Quantity Of Products</th>
-                                <th scope="col">Image</th>
+                                <th scope="col" class="display">Email</th>
+                                <th scope="col" class="display">Mobile</th>
                                 <th scope="col">Details</th>
-                                <th scope="col">Edit</th>
                                 <th scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-
-                            @foreach (var item in Model)
+                            @foreach (var i in Model)
                             {
-                                if (item.Image != null)
-                                {
-
-                                    var base64 = Convert.ToBase64String(item.Image);
-                                    var imgsrc = string.Format("data:image/gif; base64,{0}", base64);
-
-
-                                    <tr>
-                                        <td class="displayNone">@item.ID</td>
-                                        <td>@item.Name</td>
-                                        <td class="displayNone">@item.Products.Count()</td>
-                                        <td>
-                                            <img src="@imgsrc" class="img" />
-                                        </td>
-                                        <th>@Html.ActionLink("Details", "CategoryDetails", new { id = item.ID }, new { @class = "btn btn-primary" })</th>
-                                        <th>@Html.ActionLink("Edit", "Edit_category", new { id = item.ID }, new { @class = "btn btn-primary" })</th>
-                                        <th>@Html.ActionLink("Delete", "Delete_category", new { id = item.ID }, new { @class = "btn btn-primary delete" })</th>
-
-                                    </tr>
-                                }
-                                else
-                                {
-                                    <tr>
-                                        <td class="displayNone">@item.ID</td>
-                                        <td>@item.Name</td>
-                                        <td class="displayNone">@item.Products.Count()</td>
-                                        <td>
-                                            <img src="~/pics/NoImg.png" class="img" />
-                                        </td>
-                                        <th>@Html.ActionLink("Details", "CategoryDetails", new { id = item.ID }, new { @class = "btn btn-primary" })</th>
-                                        <th>@Html.ActionLink("Edit", "Edit_category", new { id = item.ID }, new { @class = "btn btn-primary" })</th>
-                                        <th>@Html.ActionLink("Delete", "Delete_category", new { id = item.ID }, new { @class = "btn btn-primary delete" })</th>
-                                    </tr>
-                                }
+                                <tr>
+                                    <td>@i.id</td>
+                                    <td>@i.name</td>
+                                    <td class="display">@i.email</td>
+                                    <td class="display">@i.mobile</td>
+                                    <th>@Html.ActionLink("Details", "AdminDetails", new { id = i.id }, new { @class = "btn btn-primary" })</th>
+                                    <th>@Html.ActionLink("Delete", "Delete_Admin", new { id = i.id }, new { @class = "btn btn-primery  delete" })</th>
+                                </tr>
                             }
 
                         </tbody>
@@ -266,17 +258,17 @@
                         @Html.PagedListPager(Model, page => Url.Action("Index", new { page })) @*Buttons of pages*@
                     </div>
                 </div>
-
             </div>
+
+
         </div>
-
-
     </div>
     <script>
         function BarFunction() {
-            document.getElementById('Show_Categories').setAttribute("class", "nav-link text-white active");
+            document.getElementById('Show_Admins').setAttribute("class", "nav-link text-white active");
         }
     </script>
+
     <!------------------------------------------------------------------------------------------------->
     <!--Bootstrap js-->
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
@@ -296,3 +288,4 @@
 
 </body>
 </html>
+

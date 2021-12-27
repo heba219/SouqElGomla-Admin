@@ -11,14 +11,17 @@ namespace SouqElGomalAdmin.Repository
     public class CategoryRepo
     {
         static List<CategoryModel> resList = new List<CategoryModel>();
-        static API2SouqElGomlaEntities1 context = new API2SouqElGomlaEntities1();
+        static API2SouqElGomlaEntities4 context = new API2SouqElGomlaEntities4();
 
         public static List<CategoryModel> GetAll()
         {
             resList.Clear();
+            resList.Clear();
+
             foreach (var i in context.Categories)
             {
-                resList.Add(new CategoryModel(i.ID, i.Name, i.Products.Count,i.Description, i.Image));
+                i.Products = context.Products.Where(j => j.CategoryID == i.ID).ToList();            // to resolve Cashing problem
+                resList.Add(new CategoryModel(i.ID, i.Name, i.Products ,i.Description, i.Image));
             }
 
             return resList;
@@ -27,8 +30,16 @@ namespace SouqElGomalAdmin.Repository
 
         public static void Add(Category newCategory)
         {
-            context.Categories.Add(newCategory);
-            context.SaveChanges();
+            try                                             //error 
+            {
+                context.Categories.Add(newCategory);
+                context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+
+            }
+                      
         }
 
 

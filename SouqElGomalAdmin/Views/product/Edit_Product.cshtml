@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Sidebars · Bootstrap v5.1</title>
+    <title>SougEl-Gomla Admin</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
 
@@ -27,19 +27,22 @@
         #formcontainer {
             margin: 0 auto;
         }
+        .field-validation-error {
+            color: red;
+        }
     </style>
 
 </head>
 <!------------------------------------------------------------------------------------------------->
-<body style=" background-color: #DEDEDE ">
+<body style=" background-color: #DEDEDE " class="active">
 
     <div class="row">
 
-        <div class="col-2">
-            @Html.Partial("_SideBar");
+        <div>
+            @Html.Partial("_SideBar2");
         </div>
 
-        <div class="col-10">
+        <div class="col-12">
 
             <!--add Category-->
 
@@ -54,26 +57,49 @@
                         @Html.TextBoxFor(i => i.ID, new { @type = "hidden" });
 
                         @Html.LabelFor(i => i.Name);
-                        @Html.TextBoxFor(i => i.Name, new { @class = "form-control" });
+                        @Html.TextBoxFor(i => i.Name, new { @class = "form-control", required = "required" });
                         @Html.ValidationMessageFor(i => i.Name);
+                        <div style="color:red;">@ViewBag.existingName3</div>
+                        <embed />
 
                         @Html.LabelFor(i => i.CategoryID);
-                        @Html.TextBoxFor(i => i.CategoryID, new { @class = "form-control" });
+                        @Html.DropDownListFor(i => i.CategoryID, ViewBag.cat3 as SelectList, "--Category--", new { @class = "form-control", required = "required" });
                         @Html.ValidationMessageFor(i => i.CategoryID);
+                        <br />
 
                         @Html.LabelFor(i => i.Price);
-                        @Html.TextBoxFor(i => i.Price, new { @class = "form-control" });
+                        @Html.TextBoxFor(i => i.Price, new { @class = "form-control", Type = "number", min = "0", required = "required" });
                         @Html.ValidationMessageFor(i => i.Price);
+                        <br />
 
-                        @Html.LabelFor(i => i.UnitWeight);
-                        @Html.TextBoxFor(i => i.UnitWeight, new { @class = "form-control" });
-                        @Html.ValidationMessageFor(i => i.UnitWeight);
+                        @Html.LabelFor(i => i.Quantity);
+                        @Html.TextBoxFor(i => i.Quantity, new { @class = "form-control", Type = "number", min = "0", required = "required" });
+                        @Html.ValidationMessageFor(i => i.Quantity);
+                        <br />
+
+                        <div>@Html.LabelFor(i => i.UnitWeight)</div>
+                        @Html.TextBoxFor(i => i.UnitWeight, new { @class = "form-control", type = "number", min = "0", style = "width:70%; float:left;", value = ViewBag.number })
+                        @Html.DropDownList("unit", new List<SelectListItem>{
+                        new SelectListItem{Text="g" ,Value="0" },
+                        new SelectListItem{Text="kg" ,Value="1" },
+                        new SelectListItem{Text="ml" ,Value="2" },
+                        new SelectListItem{Text="L" ,Value="3" }
+                        }, "Select Unit", new { @class = "form-control", type = "number", min = "0", style = "width:30%; float:right;", value = ViewBag.unit })
+                        @Html.ValidationMessageFor(i => i.UnitWeight)
+                        <br />
+                        <br />
+
+                        @Html.LabelFor(i => i.PackgesNumber);
+                        @Html.TextBoxFor(i => i.PackgesNumber, new { @class = "form-control", Type = "number", min = "0", required = "required" });
+                        @Html.ValidationMessageFor(i => i.PackgesNumber);
+                        <br />
 
                         @Html.LabelFor(i => i.Description);
-                        @Html.TextBoxFor(i => i.Description, new { @class = "form-control" });
+                        @Html.TextBoxFor(i => i.Description, new { @class = "form-control", required = "required" });
                         @Html.ValidationMessageFor(i => i.Description);
+                        <br />
 
-                        <input type="file" name="Image2" />
+                        <input type="file" name="Image2" accept="image/*" />
                         <br />
                         <br />
                         <input type="submit" value="Edit Product" class="btn btn-primary" style="background-color:darkorange; margin:10px 0; border:1px solid darkorange" />

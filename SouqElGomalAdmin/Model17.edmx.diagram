@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="19988f89ee3e4b2ea2ebf70d229941ce" Name="Diagram1">
+        <EntityTypeShape EntityType="API2SouqElGomlaModel.C__EFMigrationsHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="API2SouqElGomlaModel.adminLogin" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="API2SouqElGomlaModel.AspNetRoleClaim" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="API2SouqElGomlaModel.AspNetRole" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="API2SouqElGomlaModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="API2SouqElGomlaModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="API2SouqElGomlaModel.AspNetUser" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="API2SouqElGomlaModel.AspNetUserToken" Width="1.5" PointX="5.25" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="API2SouqElGomlaModel.Category" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="API2SouqElGomlaModel.Order" Width="1.5" PointX="5.25" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="API2SouqElGomlaModel.Product" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="API2SouqElGomlaModel.ProductOrder" Width="1.5" PointX="7.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="API2SouqElGomlaModel.RetailerReviewProduct" Width="1.5" PointX="10.5" PointY="11.5" IsExpanded="true" />
+        <AssociationConnector Association="API2SouqElGomlaModel.FK_AspNetRoleClaims_AspNetRoles_RoleId" ManuallyRouted="false" />
+        <AssociationConnector Association="API2SouqElGomlaModel.FK_AspNetUserClaims_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="API2SouqElGomlaModel.FK_AspNetUserLogins_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="API2SouqElGomlaModel.FK_AspNetUserTokens_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="API2SouqElGomlaModel.FK_Order_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="API2SouqElGomlaModel.FK_Product_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="API2SouqElGomlaModel.FK_RetailerReviewProduct_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="API2SouqElGomlaModel.FK_Product_Category_CategoryID" ManuallyRouted="false" />
+        <AssociationConnector Association="API2SouqElGomlaModel.FK_ProductOrder_Order_OrderID" ManuallyRouted="false" />
+        <AssociationConnector Association="API2SouqElGomlaModel.FK_ProductOrder_Product_ProductID" ManuallyRouted="false" />
+        <AssociationConnector Association="API2SouqElGomlaModel.FK_RetailerReviewProduct_Product_ProductID" ManuallyRouted="false" />
+        <AssociationConnector Association="API2SouqElGomlaModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

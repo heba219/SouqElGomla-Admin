@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Sidebars · Bootstrap v5.1</title>
+    <title>SougEl-Gomla Admin</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
 
@@ -42,10 +42,10 @@
         var base64 = Convert.ToBase64String(Model.Image);
         var imgsrc = string.Format("data:image/gif; base64,{0}", base64);
 
-    <div class="card" style=" width: 50%; margin:0 auto; margin-top:50px;">
-        <h1>Details Of User</h1>
+    <div class="card" style=" width: 50%; margin: 0 auto; margin-top: 40px; margin-bottom: 40px;">
+        <h3 style="padding:10px; margin:0auto;">Details Of User</h3>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item" id="img"><img src="@imgsrc" /></li>
+
             <li class="list-group-item"><h1>Details Of User</h1></li>
             <li class="list-group-item"><b>ID: </b>@Model.ID</li>
             <li class="list-group-item"><b>Name: </b>@Model.Name</li>
@@ -55,7 +55,7 @@
             <li class="list-group-item"><b>UserName: </b>@Model.UserName</li>
         </ul>
         <a href="~/users/Index">
-            <div class="card-footer btn btn-primary" style="width:100%; background-color:darkorange;">
+            <div class="card-footer btn btn-primary" style="width: 100%; background-color: darkorange;">
                 Back
             </div>
         </a>
@@ -67,8 +67,7 @@
         <div class="card" style=" width: 50%; margin: 0 auto; margin-top: 50px;">
             <h1>Details Of User</h1>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><div style="width: 400px; height: 400px; background-color: gray; margin: 0 auto;"></div></li>
-                <li class="list-group-item"><b>ID: </b>@Model.ID</li>
+                  <li class="list-group-item"><b>ID: </b>@Model.ID</li>
                 <li class="list-group-item"><b>Name: </b>@Model.Name</li>
                 <li class="list-group-item"><b>Address: </b>@Model.Address</li>
                 <li class="list-group-item"><b>Email: </b>@Model.Email</li>

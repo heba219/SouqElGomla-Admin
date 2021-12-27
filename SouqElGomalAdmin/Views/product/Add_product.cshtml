@@ -1,5 +1,5 @@
-﻿@using SouqElGomalAdmin.Models
-@model ProductType
+﻿@using SouqElGomalAdmin.ViewModels
+@model ProductModel
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Sidebars · Bootstrap v5.1</title>
+    <title>SougEl-Gomla Admin</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
 
@@ -26,28 +26,31 @@
         #formcontainer {
             margin: 0 auto;
         }
+        .field-validation-error{
+            color:red;
+        }
     </style>
 </head>
 <!------------------------------------------------------------------------------------------------->
-<body style=" background-color: #DEDEDE " onload="BarFunction();">
+<body style=" background-color: #DEDEDE " onload="BarFunction();" class="active">
 
 
     <!------------------------------------------------------------------------------------------------->
     <div class="row">
 
-        <div class="col-2">
+        <div>
 
-            @Html.Partial("_SideBar");
+            @Html.Partial("_SideBar2");
         </div>
 
-        <div class="col-10">
+        <div class="col-12">
 
             <!--add Category-->
 
             <div class="row">
                 <!-- main -->
                 <div class="col-12 col-md-10 mt-2 mb-2 border border-1 rounded" id="formcontainer" style="background-color: #FFF ">
-                    <h4 class="mt-4">ADD-Category</h4>
+                    <h4 class="mt-4">ADD-Product</h4>
                     <hr />
 
                     @using (Html.BeginForm("Add_product", "product", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -56,27 +59,46 @@
                         @Html.LabelFor(i => i.Name);
                         @Html.TextBoxFor(i => i.Name, new { @class = "form-control" });
                         @Html.ValidationMessageFor(i => i.Name);
+                        <div style="color:red;">@ViewBag.existingName2</div>
+
+                        @Html.LabelFor(i => i.Price);
+                        @Html.TextBoxFor(i => i.Price, new { @class = "form-control", type = "number", min = "0" });
+                        @Html.ValidationMessageFor(i => i.Price);
+                        <br />
+
+                        @Html.Label("Category");
+                        @Html.DropDownListFor(i => i.CategoryID, ViewBag.cat2 as SelectList, "--Category--", new { @class = "form-control" });
+                        @Html.ValidationMessageFor(i => i.CategoryID);
+                        <br />
+
+                        @Html.LabelFor(i => i.Quantity);
+                        @Html.TextBoxFor(i => i.Quantity, new { @class = "form-control", type = "number", min = "0" });
+                        @Html.ValidationMessageFor(i => i.Quantity);
+                        <br />
+
+
+                        <div>@Html.LabelFor(i => i.UnitWeight)</div>
+                        @Html.TextBoxFor(i => i.UnitWeight, new { @class = "form-control", type = "number", min = "0", style = "width:70%; float:left;" })
+                        @Html.DropDownList("unit", new List<SelectListItem>{
+                        new SelectListItem{Text="g" ,Value="0" },
+                        new SelectListItem{Text="kg" ,Value="1" },
+                        new SelectListItem{Text="ml" ,Value="2" },
+                        new SelectListItem{Text="L" ,Value="3" }
+                        }, "Select Unit", new { @class = "form-control", type = "number", min = "0", style = "width:30%; float:right;" })
+                        @Html.ValidationMessageFor(i => i.UnitWeight)
+                        <br />
+                        <br />
+
+                        @Html.LabelFor(i => i.PackgesNumber);
+                        @Html.TextBoxFor(i => i.PackgesNumber, new { @class = "form-control", type = "number", min = "0" });
+                        @Html.ValidationMessageFor(i => i.PackgesNumber);
+                        <br />
 
                         @Html.LabelFor(i => i.Description);
                         @Html.TextBoxFor(i => i.Description, new { @class = "form-control" });
                         @Html.ValidationMessageFor(i => i.Description);
-
-                        @Html.LabelFor(i => i.Price);
-                        @Html.TextBoxFor(i => i.Price, new { @class = "form-control" });
-                        @Html.ValidationMessageFor(i => i.Price);
-
-                        @*@Html.LabelFor(i => i.CategoryID);
-                            @Html.TextBoxFor(i => i.CategoryID, new { @class = "form-control" });
-                            @Html.ValidationMessageFor(i => i.CategoryID);*@
-
-                        @Html.LabelFor(i => i.CategoryID);
-                        @Html.DropDownListFor(i => i.CategoryID, ViewBag.cat as SelectList, "Category", new { @class = "form-control" });
-
-                        @Html.LabelFor(i => i.UnitWeight);
-                        @Html.TextBoxFor(i => i.UnitWeight, new { @class = "form-control" });
-                        @Html.ValidationMessageFor(i => i.UnitWeight);
-
-                        <input type="file" name="Image1" />
+                        <br />
+                        <input type="file" name="Image1" accept="image/*" />
                         <br />
                         <br />
 

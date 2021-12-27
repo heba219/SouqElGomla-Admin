@@ -1,5 +1,6 @@
-﻿@using SouqElGomalAdmin.Models
-@model List<PindingType>
+﻿@using SouqElGomalAdmin.ViewModels
+@using PagedList;
+@model IPagedList<adminModel>
 
 <!doctype html>
 <html lang="en">
@@ -9,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Sidebars · Bootstrap v5.1</title>
+    <title>SougEl-Gomla Admin</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
 
@@ -45,7 +46,6 @@
             border-radius: 10px;
             animation-duration: 2s;
             border: solid lightgray 2px;
-           
         }
 
         .col-3 > img {
@@ -58,25 +58,35 @@
         #formcontainer {
             margin: 0 auto;
         }
+        h5{
+            margin:0 auto;
+            margin-top:10px;
+        }
+        .card > hr {
+            width: 20%;
+            height: 3px;
+            color:blue;
+            margin:0 auto;
+        }
+
 
         @@media(min-width: 481px) and (max-width: 767px) {
             .col-6.card {
                 width: 100%;
             }
 
-            #myChart2{
-                width:90%;
+            #myChart2 {
+                width: 90%;
             }
 
             .col-3.card {
                 width: 50%;
             }
+
             .table {
                 width: 100%;
             }
         }
-
-
     </style>
 </head>
 
@@ -84,15 +94,15 @@
 <!---------------------------------------------------------------------------------------------------->
 
 
-<body style=" background-color: #DEDEDE " onload="BarFunction();">
+<body style=" background-color: #DEDEDE " onload="BarFunction();"  class="active">
 
     <div class="row">
 
-        <div class="col-2">
-            @Html.Partial("_SideBar");
+        <div >
+            @Html.Partial("_SideBar2");
         </div>
 
-        <div class="col-10">
+        <div class="col-12" id="forMenu">
 
 
             <!--Cards-->
@@ -103,7 +113,7 @@
                     <div class="card-body">
                         <h4 class="card-title" style="color:#fff">Categories</h4>
                         <h3 class="card-title" style="color:#fff">@ViewBag.TotalCategories</h3>
-                        <div class="btn" style="color:#fff"> More -></div>
+                        <div class="btn" style="color:#fff"><a href="/categories/Index" style="color:white;">More--></a></div>
                     </div>
                 </div>
                 <div class="col-3  card" style=" background-image: url('../../pics/grad-2.png'); ">
@@ -111,7 +121,7 @@
                     <div class="card-body">
                         <h4 class="card-title" style="color:#fff">Products</h4>
                         <h3 class="card-title" style="color:#fff">@ViewBag.TotalProduct</h3>
-                        <div class="btn" style="color:#fff"> More -></div>
+                        <div class="btn" style="color:#fff"><a href="/product/Index" style="color:white;">More--></a></div>
                     </div>
                 </div>
                 <div class="col-3 card" style=" background-image: url('../../pics/grad-3.png'); ">
@@ -119,15 +129,15 @@
                     <div class="card-body">
                         <h4 class="card-title" style="color:#fff">Users</h4>
                         <h3 class="card-title" style="color:#fff">@ViewBag.TotalUsers</h3>
-                        <div class="btn" style="color:#fff"> More -></div>
+                        <div class="btn" style="color:#fff"><a href="/users/Index" style="color:white;">More--></a></div>
                     </div>
                 </div>
                 <div class="col-3 card" style=" background-image: url('../../pics/grad-4.png'); ">
-                    <img src="~/pics/IconsAdmin-04.png" />
+                    <img src="~/pics/IconsAdmin-00.png" />
                     <div class="card-body">
-                        <h3 class="card-title" style="color:#fff">Admins</h3>
-                        <h3 class="card-title" style="color:#fff">@ViewBag.TotalUsers</h3>
-                        <div class="btn" style="color:#fff">More -></div>
+                        <h3 class="card-title" style="color:#fff">Orders</h3>
+                        <h3 class="card-title" style="color:#fff">@ViewBag.TotalOrders</h3>
+                        <div class="btn" style="color:#fff"><a href="/order/Index" style="color:white;">More--></a></div>
                     </div>
                 </div>
 
@@ -167,32 +177,79 @@
 
                 <div class="col-6 card">
                     <h5>Admins</h5>
+                    <hr />
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>UserName</th>
-                                <th>Delete</th>
+                                <th>Email</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var i in Model)
                             {
                                 <tr>
-                                    <td>@i.ID</td>
-                                    <td>@i.Name</td>
-                                    <td>@i.UserName</td>
-                                    <th><a href="#"><div class="btn btn-danger">Regect</div></a></th>
+                                    <td>@i.id</td>
+                                    <td>@i.name</td>
+                                    <td>@i.email</td>
                                 </tr>
                             }
                         </tbody>
+                       
                     </table>
-
                 </div>
             </div>
-        </div>
-    </div>
+
+                <!--Orders-->
+                <div class="row" style="margin:7px 15px;">
+
+                    <div class="col-12 card">
+                        <h5>Orders</h5>
+                        <hr />
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Order ID</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var i in ViewBag.orders)
+                                {
+                                    <tr>
+
+                                        <td>@i.ID</td>
+                                        <td>@i.OrderDate</td>
+
+                                        @if (i.State == 0)
+                                        {
+                                            <td><div style="width: 10px; height: 10px; border-radius: 50px; background-color: darkgoldenrod; Display:inline-block;"></div><b style="color:darkgoldenrod;"> Pending</b></td>
+                                        }
+                                        @if (i.State == 1)
+                                        {
+                                            <td><div style="width: 10px; height: 10px; border-radius: 50px; background-color: blue; Display:inline-block;"></div><b style="color:blue;"> On The Way</b></td>
+                                        }
+                                        @if (i.State == 2)
+                                        {
+                                            <td><div style="width: 10px; height: 10px; border-radius: 50px; background-color: green; Display:inline-block;"></div><b style="color:green;"> Delivard</b></td>
+                                        }
+
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+
+                </div>
+         </div>
+        
+
+</div>
     <script>
         function BarFunction() {
             document.getElementById('Dashboard').setAttribute("class", "nav-link text-white active");

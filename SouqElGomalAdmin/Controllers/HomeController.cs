@@ -1,4 +1,5 @@
-﻿using SouqElGomalAdmin.Models;
+﻿using PagedList;
+using SouqElGomalAdmin.Models;
 using SouqElGomalAdmin.Repository;
 using SouqElGomalAdmin.ViewModels;
 using System;
@@ -11,16 +12,12 @@ namespace SouqElGomalAdmin.Controllers
 {
     public class HomeController : Controller
     {
-        public List<PindingType> StaticMembers = new List<PindingType>() 
-        {
-            new PindingType(){ID="13", Name="member_1", Address="st123", Email="member_1@mail.com" , PhoneNumber="12345", UserName="member_1"},
-            new PindingType() {ID="14", Name="member_2", Address="st123", Email="member2@mail.com" , PhoneNumber="12345", UserName="member_2"},
-            new PindingType() {ID="15", Name="member_3", Address="st123", Email="member_41@mail.com" , PhoneNumber="12345", UserName="member_13"},
-            new PindingType() {ID="16", Name="member_4", Address="st123", Email="member_51@mail.com" , PhoneNumber="12345", UserName="member_4"}
-        };
+
         int usersCount = UserRepo.GetAll().Count();
         int CategoryCount = CategoryRepo.GetAll().Count();
         int ProductCount = ProductRepo.GetAll().Count();
+        int AdminCount = admin.GetAll().Count();
+        int OrderCount = OrderRepo.GetAll().Count();
 
         string[] names =  new string[15];
         int[] quantity = new int[15];
@@ -28,57 +25,56 @@ namespace SouqElGomalAdmin.Controllers
         List<CategoryModel> Category = CategoryRepo.GetAll();
 
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
+            ////////////////////////////////
+            if (Session["admin"] == null)
+                return Redirect("/admin/login");
+            ////////////////////////////////
+            ///
+
+            List<adminModel> list = new List<adminModel>();
+            list = admin.GetAll();
 
             ViewBag.TotalUsers = usersCount;
             ViewBag.TotalCategories = CategoryCount;
             ViewBag.TotalProduct = ProductCount;
-            ViewBag.TotalProduct = ProductCount;
+            ViewBag.TotalAdmin = AdminCount;
+            ViewBag.TotalOrders = OrderCount;
 
-            //for(int i= 0; i < 15; i++)
-            //{
-            //    names[i] = CategoryRepo.GetAll()[i].Name;
-            //    quantity[i] = CategoryRepo.GetAll()[i].ID;
-            //}
+            List<OrderModel> res;
+            //List<ProductModel> productsName;
 
-            //ViewBag.Names = names;
-            //ViewBag.quantity = quantity;
-            if (Session["admin"] == null)
-                return Redirect("/admin/login");
+            res = OrderRepo.GetAll().ToList();
+            ViewBag.orders = res.ToPagedList(page ?? 1, 5);
 
-            return View(StaticMembers);
+            return View(list.ToPagedList(page ?? 1, 5));
         }
 
 
         [HttpGet]
         public ActionResult UserDetails(string id)
         {
-            PindingType res = StaticMembers.FirstOrDefault(i => i.ID == id);
+            ////////////////////////////////
             if (Session["admin"] == null)
                 return Redirect("/admin/login");
+            ////////////////////////////////
 
-            return View(res);
+            return View();
         }
 
 
-        //[HttpGet]
-        //public ActionResult AcceptUser(string id)
-        //{
-        //    PindingType res = StaticMembers.FirstOrDefault(i => i.ID == id);
-        //    UserType user = new UserType();
+        public ActionResult Delete_Admin(int id)
+        {
+            ////////////////////////////////
+            if (Session["admin"] == null)
+                return Redirect("/admin/login");
+            ////////////////////////////////
 
-        //    user.ID = res.ID;
-        //    user.Name = res.Name;
-        //    user.Email = res.Email;
-        //    user.Address = res.Address;
-        //    user.UserName = res.UserName;
-        //    user.PhoneNumber = res.PhoneNumber;
+            admin.Remove(id);
 
-        //    TempData["usersFromPinding"] = user;
-
-        //    return Redirect();
-        //}
+            return Redirect("/admin/Index");
+        }
 
     }
 }

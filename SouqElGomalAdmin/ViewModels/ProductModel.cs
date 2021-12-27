@@ -8,23 +8,43 @@ namespace SouqElGomalAdmin.ViewModels
 {
     public class ProductModel
     {
+
         [Display(Name = "ID")]
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "*Name Required")]
         [Display(Name = "Name")]
         public string Name { get; set; }
+
+        [Required(ErrorMessage = "*Description Required")]
         [Display(Name = "Description ")]
         public string Description { get; set; }
+
+        [Required(ErrorMessage = "*Price Required")]
         [Display(Name = "Price")]
         public float Price { get; set; }
+
+        [Required(ErrorMessage = "*Quantity Required")]
         [Display(Name = "Quantity")]
         public int Quantity { get; set; }
+
+        [Required(ErrorMessage = "*UnitWeight Required")]
         [Display(Name = "UnitWeight")]
         public string UnitWeight { get; set; }
+
+
         [Display(Name = "Image")]
         public byte[]Image { get; set; }
+
+
         [Display(Name = "UserId")]
         public string UserId { get; set; }
 
+        [Required(ErrorMessage = "*Packges Number Required")]
+        [Display(Name = "Packges Number")]
+        public int PackgesNumber { get; set; }
+
+        [Required(ErrorMessage = "*Category Required")]
         public int CategoryID { get; set; }
 
 
@@ -32,18 +52,16 @@ namespace SouqElGomalAdmin.ViewModels
         {
 
         }
-        public ProductModel(int _id, string _name, string _Description, float _Price, int _Quantity
-            , string _UnitWeight, byte[] _Image, string _UserId, int _CategoryID)
+        public ProductModel(int _id, string _name, string _Description, float _Price , string _UnitWeight, byte[] _Image
+            ,  int _CategoryID = 0)
         {
             Name = _name;
             ID = _id;
             Description = _Description;
             Price = _Price;
-            Quantity = _Quantity;
-            UnitWeight = _UnitWeight;
             Image = _Image;
-            UserId = _UserId;
             CategoryID = _CategoryID;
+            UnitWeight = _UnitWeight;
         }
     }
 }
