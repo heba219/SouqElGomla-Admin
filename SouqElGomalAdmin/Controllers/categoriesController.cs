@@ -59,7 +59,7 @@ namespace SouqElGomalAdmin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add_category(CategoryType NewCategory, HttpPostedFileBase Image1)
+        public ActionResult Add_category(CategoryModel NewCategory, HttpPostedFileBase Image1)
         {
             ////////////////////////////////
             if (Session["admin"] == null)
@@ -92,13 +92,14 @@ namespace SouqElGomalAdmin.Controllers
                         Image1.InputStream.Read(NewCategory.Image, 0, Image1.ContentLength);
 
                     
-                       // temp.ID = NewCategory.ID;
+                       //temp.ID = NewCategory.ID;
                         temp.Name = NewCategory.Name;
                         temp.Description = NewCategory.Description;
                         temp.Image = NewCategory.Image;
                     }
                     else
                     {
+                        //temp.ID = NewCategory.ID;
                         temp.Name = NewCategory.Name;
                         temp.Description = NewCategory.Description;
                     }

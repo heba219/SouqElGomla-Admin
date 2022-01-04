@@ -30,15 +30,9 @@ namespace SouqElGomalAdmin.Repository
 
         public static void Add(Category newCategory)
         {
-            try                                             //error 
-            {
+
                 context.Categories.Add(newCategory);
                 context.SaveChanges();
-            }
-            catch(Exception ex)
-            {
-
-            }
                       
         }
 

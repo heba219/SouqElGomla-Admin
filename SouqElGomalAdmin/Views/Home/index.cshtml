@@ -152,13 +152,12 @@
                     <canvas id="myChart2"></canvas>
 
                     <script>
-                        var xValues = ["Products", "Categories", "Retailers", "Supliers"];
-                        var yValues = [@ViewBag.TotalProduct, @ViewBag.TotalCategories, @ViewBag.TotalUsers, @ViewBag.TotalUsers];
+                        var xValues = ["Products", "Categories", "Users"];
+                        var yValues = [@ViewBag.TotalProduct, @ViewBag.TotalCategories, @ViewBag.TotalUsers];
                         var barColors = [
                             "#f98125",
                             "#5b84c4",
-                            "#193a6f",
-                            "#11224d"
+                            "#193a6f"
                         ];
 
                         new Chart("myChart2", {
